@@ -1,0 +1,69 @@
+.nav {
+  display: flex;
+  height: 5rem;
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
+  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+}
+
+.navMenu {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.navItem,
+.auth,
+.cart {
+  padding: 10px;
+}
+
+.auth:hover,
+.cart:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+}
+
+.h1 {
+  font-size: 2rem;
+  letter-spacing: -0.1rem;
+  margin: 0;
+}
+
+.red {
+  color: red;
+}
+
+.isActive {
+  background-color: pink;
+}
+
+.notActive {
+  background-color: black;
+}
+
+.navItem {
+  font-weight: 500;
+  color: gray;
+}
+
+.navItem:hover,
+.active {
+  color: black;
+}
+
+.rightMenu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  width: 1.7rem;
+  height: auto;
+}

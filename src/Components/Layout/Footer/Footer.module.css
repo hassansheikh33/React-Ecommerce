@@ -1,0 +1,18 @@
+.footer {
+  background-color: black;
+  color: white;
+  width: 100%;
+  position: fixed;
+  bottom: 0%;
+  /* height: 3rem; */
+}
+
+.upperContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.credits {
+  text-align: center;
+}

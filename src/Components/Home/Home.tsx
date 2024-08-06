@@ -1,3 +1,9 @@
+import classes from "./Home.module.css";
+
 export default function Home() {
-  return <h1>This is HomePage</h1>;
+  return (
+    <div className={classes.homeContainer}>
+      <h1>Home</h1>
+    </div>
+  );
 }
