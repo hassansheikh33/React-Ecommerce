@@ -2,10 +2,10 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { NotificationType } from "../types";
 
 let initialState: {
-  notification: NotificationType | null;
+  notifications: NotificationType[];
   toggleNav: boolean;
 } = {
-  notification: null,
+  notifications: [],
   toggleNav: false,
 };
 
@@ -16,12 +16,15 @@ const uiSlice = createSlice({
     toggleNav(state) {
       state.toggleNav = !state.toggleNav;
     },
-    setNotification(state, action: PayloadAction<NotificationType>) {
-      state.notification = { ...action.payload };
+    addNotification(state, action: PayloadAction<NotificationType>) {
+      state.notifications.push({ ...action.payload });
     },
-    clearNotification(state) {
-      state.notification = null;
+    removeNotification(state) {
+      state.notifications.shift();
     },
+    // clearNotification(state) {
+    //   state.notification = null;
+    // },
   },
 });
 

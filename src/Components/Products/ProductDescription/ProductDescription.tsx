@@ -4,12 +4,30 @@ import { Product } from "../../../types";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../store/redux-store";
 import { cartActions } from "../../../store/cart-slice";
+import { useState } from "react";
+import QtyForm from "../../UI/QtyForm/QtyForm";
+import Button from "../../UI/Button/Button";
 
 export default function ProductDescription() {
+  const [qty, setQty] = useState<number>(1);
   const dispatch = useDispatch<AppDispatch>();
   const product = useLoaderData() as Product;
   const addtoCartHandler = () => {
-    dispatch(cartActions.addItem({ ...product, amount: 1 }));
+    dispatch(cartActions.addItem({ ...product, amount: qty }));
+  };
+
+  const increaseQty = () => {
+    if (qty === 10) {
+      return;
+    }
+    setQty((qty) => qty + 1);
+  };
+
+  const decreaseQty = () => {
+    if (qty === 1) {
+      return;
+    }
+    setQty((qty) => qty - 1);
   };
 
   return (
@@ -27,17 +45,18 @@ export default function ProductDescription() {
         <p>
           {product.rating.rate} stars ({product.rating.count} ratings)
         </p>
-        <div className={classes.buttonContainer}>
-          <button
-            className={`${classes.addToCartBtn} ${classes.btn}`}
-            onClick={addtoCartHandler}
-          >
-            Add to Cart
-          </button>
+        <div>
+          <QtyForm
+            qty={qty}
+            setQty={setQty}
+            decreaseQty={decreaseQty}
+            increaseQty={increaseQty}
+          />
+          <Button onClick={addtoCartHandler}>Add to Cart</Button>
           {/* make a go back button here by creating histroy array in redux and storing the current path by using useLocation */}
-          <button className={`${classes.backBtn} ${classes.btn}`}>
+          {/* <button className={`${classes.backBtn} ${classes.btn}`}>
             Go Back
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

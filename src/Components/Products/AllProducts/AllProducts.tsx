@@ -63,9 +63,7 @@ export default function AllProducts(props: Props) {
         {products.map((item) => (
           <ProductItem
             onClick={() =>
-              navigate(`/shop/category/${item.category}/${item.id}`, {
-                replace: true,
-              })
+              navigate(`/shop/category/${item.category}/${item.id}`)
             }
             key={item.id}
             product={item}

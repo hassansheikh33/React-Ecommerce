@@ -1,0 +1,23 @@
+.image {
+  width: 30%;
+  height: auto;
+  cursor: pointer;
+}
+
+.itemTitle {
+  cursor: pointer;
+}
+
+.itemContainer {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.detailsContainer {
+  width: 60%;
+}
+
+.delBtn {
+  padding: 5px;
+  margin-left: 0.5rem;
+}

@@ -20,11 +20,11 @@ export default function Footer() {
   }
   return (
     <footer className={classes.footer}>
-      <Link to="/" className={classes.link}>
-        <h1 className={classes.h1}>
+      <h1 className={classes.h1}>
+        <Link to="/" className={`${classes.link} ${classes.compName}`}>
           React<span className={classes.red}>Commerce</span>
-        </h1>
-      </Link>
+        </Link>
+      </h1>
       <div className={classes.upperContainer}>
         <div className={classes.links}>
           <h3 className={classes.columnHeading}>Company</h3>

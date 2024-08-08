@@ -10,7 +10,6 @@ export default function Products() {
     data: Product[];
     category: string;
   };
-  console.log(category);
   const [filter, setFilter] = useState<string>("none");
 
   const filterChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -60,11 +59,7 @@ export default function Products() {
       <ProductContainer>
         {products.map((item) => (
           <ProductItem
-            onClick={() =>
-              navigate(`/shop/category/${category}/${item.id}`, {
-                replace: true,
-              })
-            }
+            onClick={() => navigate(`/shop/category/${category}/${item.id}`)}
             key={item.id}
             product={item}
           />

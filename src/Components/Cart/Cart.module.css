@@ -1,0 +1,49 @@
+.container {
+  width: 90%;
+  margin: auto;
+  text-align: center;
+}
+
+.empty {
+  padding-top: 5rem;
+}
+
+.cartDetails {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.items {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  row-gap: 2rem;
+}
+
+.ItemSummary {
+  width: 25%;
+  height: 40%;
+  padding: 1.5rem;
+}
+
+.summaryHeading {
+  margin-top: 0;
+}
+
+.summary {
+  color: rgb(52, 112, 243);
+}
+
+.checkoutBtn {
+  background-color: rgb(52, 112, 243);
+}
+
+.red {
+  color: red;
+}
+.clear {
+  margin-top: 1.5rem;
+  background-color: red;
+}

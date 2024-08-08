@@ -1,5 +1,5 @@
 .footer {
-  margin-top: 4rem;
+  margin-top: 2rem;
   background-color: black;
   color: white;
   width: 100%;
@@ -56,6 +56,10 @@
   letter-spacing: -0.1rem;
   padding-top: 1rem;
   margin: 0;
+  width: 20%;
+  margin-right: auto;
+  text-align: center;
+  margin-left: auto;
 }
 
 .red {

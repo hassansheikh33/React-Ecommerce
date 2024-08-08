@@ -43,7 +43,9 @@ const cartSlice = createSlice({
       if (indexToUpdate > -1) {
         let itemToUpdate = state.items[indexToUpdate];
         if (itemToUpdate.amount === 1) {
-          state.items.filter((item) => item.id !== action.payload.id);
+          state.items = state.items.filter(
+            (item) => item.id !== action.payload.id
+          );
         } else {
           itemToUpdate = {
             ...itemToUpdate,
@@ -52,6 +54,17 @@ const cartSlice = createSlice({
           state.items[indexToUpdate] = itemToUpdate;
         }
       }
+    },
+    deleteFromCart(state, action: PayloadAction<CartItem>) {
+      state.totalAmount = state.totalAmount -=
+        action.payload.price * action.payload.amount;
+      state.totalNumItems = state.totalNumItems -= action.payload.amount;
+      state.items = state.items.filter((item) => item.id !== action.payload.id);
+    },
+    clearCart(state) {
+      state.totalAmount = 0;
+      state.totalNumItems = 0;
+      state.items = [];
     },
   },
 });

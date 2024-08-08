@@ -1,0 +1,23 @@
+.notificationsContainer {
+  position: fixed;
+  right: 2%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+
+.notification {
+  color: white;
+  padding: 0px 10px;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.error {
+  background-color: red;
+}
+
+.success {
+  background-color: greenyellow;
+}

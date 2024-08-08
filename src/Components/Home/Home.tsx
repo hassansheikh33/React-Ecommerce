@@ -1,4 +1,4 @@
-import Card from "../Card/Card";
+import Card from "../UI/Card/Card";
 import classes from "./Home.module.css";
 import qualitySvg from "../../assets/quality.svg";
 import carSvg from "../../assets/car.svg";

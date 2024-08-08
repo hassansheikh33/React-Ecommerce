@@ -26,21 +26,3 @@
 .details p {
   font-size: 1.2rem;
 }
-
-.btn {
-  padding: 10px;
-  border-radius: 5px;
-  font-size: 1rem;
-  cursor: pointer;
-  border: 1px solid transparent;
-  color: white;
-}
-
-.addToCartBtn {
-  background-color: red;
-  margin-right: 1rem;
-}
-
-.backBtn {
-  background-color: black;
-}

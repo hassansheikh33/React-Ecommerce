@@ -1,0 +1,36 @@
+.qtyContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.qtyBtn,
+.qtyInput {
+  border-radius: 5px;
+  border: 2px solid red;
+  padding: 0px 2rem;
+}
+
+.qtyInput {
+  display: inline;
+  text-align: center;
+}
+
+.qtyBtn {
+  background-color: white;
+  font-weight: 550;
+  color: red;
+  font-size: 1rem;
+  padding: 4px 15px;
+}
+.qtyBtn:hover {
+  color: white;
+  background-color: red;
+}
+
+.decreaseBtn {
+  margin-right: 0.3rem;
+}
+.increaseBtn {
+  margin-left: 0.3rem;
+}
