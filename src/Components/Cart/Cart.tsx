@@ -4,7 +4,7 @@ import classes from "./Cart.module.css";
 export default function Cart() {
   return (
     <>
-      <h1>Cart</h1>
+      <h1 className={classes.heading}>Cart</h1>
       <CartItem />
     </>
   );
