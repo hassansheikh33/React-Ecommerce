@@ -1,0 +1,46 @@
+.container {
+  padding-top: 3rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.details h1 {
+  font-weight: 600;
+}
+
+.imageContainer {
+  width: 25%;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  max-height: 380px;
+}
+
+.details {
+  width: 50%;
+}
+
+.details p {
+  font-size: 1.2rem;
+}
+
+.btn {
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  border: 1px solid transparent;
+  color: white;
+}
+
+.addToCartBtn {
+  background-color: red;
+  margin-right: 1rem;
+}
+
+.backBtn {
+  background-color: black;
+}

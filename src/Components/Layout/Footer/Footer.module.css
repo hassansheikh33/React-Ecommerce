@@ -1,18 +1,88 @@
 .footer {
+  margin-top: 4rem;
   background-color: black;
   color: white;
   width: 100%;
-  position: fixed;
   bottom: 0%;
-  /* height: 3rem; */
+  height: 24rem;
 }
 
 .upperContainer {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  height: 70%;
+}
+
+.links,
+.newsLetter {
+  width: 25%;
+}
+
+.link,
+.columnHeading {
+  text-align: center;
+  text-decoration: none;
+  color: white;
+}
+
+.columnHeading {
+  margin-top: 0;
+  color: grey;
+  margin-bottom: 0.4rem;
 }
 
 .credits {
   text-align: center;
+}
+
+.credits .love {
+  color: red;
+}
+
+.credits .name {
+  color: white;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-evenly;
+}
+
+.h1 {
+  font-size: 2rem;
+  letter-spacing: -0.1rem;
+  padding-top: 1rem;
+  margin: 0;
+}
+
+.red {
+  color: red;
+}
+
+.newsLetter form {
+  margin-top: 1rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.subBtn,
+.subEmailInput {
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 1rem;
+  border: none;
+}
+
+.subEmailInput {
+  width: 80%;
+}
+
+.subBtn {
+  background-color: red;
+  color: white;
 }

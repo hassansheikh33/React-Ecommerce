@@ -20,14 +20,44 @@ export default function Footer() {
   }
   return (
     <footer className={classes.footer}>
+      <Link to="/" className={classes.link}>
+        <h1 className={classes.h1}>
+          React<span className={classes.red}>Commerce</span>
+        </h1>
+      </Link>
       <div className={classes.upperContainer}>
         <div className={classes.links}>
-          <Link to="/">Home</Link>
-          <Link to="/contactUs">Contact Us</Link>
-          <Link to="/shop">Shop</Link>
+          <h3 className={classes.columnHeading}>Company</h3>
+          <Link className={classes.link} to="/">
+            Home
+          </Link>
+          <Link className={classes.link} to="/shop">
+            Shop
+          </Link>
+          <Link className={classes.link} to="/auth">
+            Login/Signup
+          </Link>
+          <Link className={classes.link} to="/contactUs">
+            Contact Us
+          </Link>
+        </div>
+        <div className={classes.links}>
+          <h3 className={classes.columnHeading}>Legal</h3>
+          <Link className={classes.link} to="">
+            Company Policy
+          </Link>
+          <Link className={classes.link} to="/contactUs">
+            Terms & Conditions
+          </Link>
+          <Link className={classes.link} to="/shop">
+            Terms of Use
+          </Link>
+          <Link className={classes.link} to="/auth">
+            Copyright
+          </Link>
         </div>
         <div className={classes.newsLetter}>
-          <h5>Subscribe to our newsletter</h5>
+          <h3 className={classes.columnHeading}>Subscribe to our newsletter</h3>
           <form>
             <input
               className={classes.subEmailInput}
@@ -44,7 +74,11 @@ export default function Footer() {
       <hr className={classes.divider} />
       <p className={classes.credits}>
         Made with <span className={classes.love}>love</span> by{" "}
-        <a className={classes.name} href="github.com/hassansheikh33">
+        <a
+          className={classes.name}
+          href="https://github.com/hassansheikh33"
+          target="_blank"
+        >
           Muhammad Hassan Bilal
         </a>
       </p>

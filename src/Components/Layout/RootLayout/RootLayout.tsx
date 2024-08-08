@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 import classes from "./RootLayout.module.css";
 import Navbar from "../NavBar/Navbar";
-// import Footer from "../Footer/Footer";
+import Footer from "../Footer/Footer";
 
 export default function RootLayout() {
   return (
@@ -14,16 +14,15 @@ export default function RootLayout() {
         <Suspense
           fallback={
             <div className={classes.FallbackContainer}>
-              <h1>Loading....</h1>
+              <h1>Loading.... </h1>
               <div className={classes.spinner}></div>
-              <p>Please wait, the page will be loaded shortly</p>
             </div>
           }
         >
           <Outlet />
         </Suspense>
       </main>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }

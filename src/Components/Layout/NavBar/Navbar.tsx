@@ -42,9 +42,6 @@ export default function Navbar() {
         >
           Contact Us
         </NavLink>
-      </div>
-      <div className={classes.rightMenu}>
-        {/* <div className={classes.search}></div> */}
         <Link to="/auth" className={`${classes.link} ${classes.auth}`}>
           <img className={classes.icon} src={person} alt="person icon" />
         </Link>

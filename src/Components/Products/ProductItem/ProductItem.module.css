@@ -1,9 +1,28 @@
 .productContainer {
-  width: 20%;
+  width: 15%;
 }
 .image {
   width: 100%;
-  height: 267px;
+  height: 230px;
+}
+
+.priceRating {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.price {
+  margin-left: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: red;
+}
+
+.rating {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 @media (max-width: 897px) {

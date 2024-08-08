@@ -1,0 +1,35 @@
+.browseCategories {
+  margin-top: 5rem;
+}
+
+.browseCategories h2 {
+  text-align: center;
+  font-size: 3rem;
+}
+
+.categoriesContainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.categoryName {
+  position: relative;
+  top: -20%;
+  left: 5%;
+  font-size: 1.4rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.category {
+  width: 35%;
+}
+
+.image {
+  max-width: 90%;
+  margin-right: auto;
+  margin-left: auto;
+  height: auto;
+  border-radius: 5px;
+}

@@ -15,6 +15,7 @@
 .navMenu {
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
 }
 
 .navItem,
@@ -55,12 +56,6 @@
 .navItem:hover,
 .active {
   color: black;
-}
-
-.rightMenu {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .icon {
