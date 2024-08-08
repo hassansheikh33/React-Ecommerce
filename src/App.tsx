@@ -62,7 +62,7 @@ const router = createBrowserRouter(
     },
   ],
   {
-    basename: "React-Ecommerce/",
+    basename: "/React-Ecommerce",
   }
 );
 
