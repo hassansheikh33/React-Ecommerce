@@ -1,5 +1,6 @@
 .notificationsContainer {
   position: fixed;
+  top: 12%;
   right: 2%;
   display: flex;
   flex-direction: column;

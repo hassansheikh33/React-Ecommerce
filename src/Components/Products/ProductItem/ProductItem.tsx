@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../store/redux-store";
 import { cartActions } from "../../../store/cart-slice";
 import Button from "../../UI/Button/Button";
+import { uiActions } from "../../../store/ui-slice";
 
 interface Props {
   product: Product;
@@ -14,6 +15,15 @@ interface Props {
 export default function ProductItem(props: Props) {
   const dispatch = useDispatch<AppDispatch>();
   const addtoCartHandler = () => {
+    dispatch(
+      uiActions.addNotification({
+        title: "item added to cart!",
+        type: "success",
+      })
+    );
+    setTimeout(() => {
+      dispatch(uiActions.removeNotification());
+    }, 1500);
     dispatch(cartActions.addItem({ ...props.product, amount: 1 }));
   };
   return (
@@ -31,10 +41,17 @@ export default function ProductItem(props: Props) {
         <span className={classes.price}>${props.product.price}</span>
         <span className={classes.rating}>
           <span>{props.product.rating.rate} stars</span>
-          <span>({props.product.rating.count}) ratings</span>
+          <span>({props.product.rating.count} ratings)</span>
         </span>
       </p>
-      <Button onClick={addtoCartHandler}>Add to Cart</Button>
+      <div className={classes.buttonContainer}>
+        <Button onClick={addtoCartHandler} className={classes.red}>
+          Add to Cart
+        </Button>
+        <Button className={classes.seeDetailsBtn} onClick={props.onClick}>
+          See Details
+        </Button>
+      </div>
     </Card>
   );
 }

@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import classes from "./Notification.module.css";
-import { RootState } from "../../store/redux-store";
+import { RootState } from "../../../store/redux-store";
 
 export default function Notification() {
   const notifications = useSelector(

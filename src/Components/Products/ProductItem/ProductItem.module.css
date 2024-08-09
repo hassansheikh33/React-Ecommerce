@@ -1,5 +1,6 @@
 .productContainer {
   width: 15%;
+  text-align: center;
 }
 .image {
   width: 100%;
@@ -27,6 +28,19 @@
 
 .pointer {
   cursor: pointer;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.red {
+  background-color: red;
+}
+
+.seeDetailsBtn {
+  background-color: rgb(52, 112, 243);
 }
 
 @media (max-width: 897px) {

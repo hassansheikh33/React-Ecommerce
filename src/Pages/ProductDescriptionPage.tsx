@@ -1,6 +1,5 @@
 import { LoaderFunction } from "react-router-dom";
 import ProductDescription from "../Components/Products/ProductDescription/ProductDescription";
-import { Product } from "../types";
 
 export default function ProductDescriptionPage() {
   return <ProductDescription />;
@@ -8,7 +7,6 @@ export default function ProductDescriptionPage() {
 
 export const singleProductLoader: LoaderFunction = async ({ params }) => {
   const category = params.categoryName;
-  const productId = Number(params.productId);
   let endpoint = "";
   if (
     category === "jewelery" ||
@@ -28,11 +26,10 @@ export const singleProductLoader: LoaderFunction = async ({ params }) => {
       throw new Error(`Error ${response.status}: ${response.statusText}`);
     }
     const data = await response.json();
-    const product = data.filter((item: Product) => item.id === productId);
-    if (product.length === 0) {
-      throw new Error("Invalid Id");
+    if (data.length > 0) {
+      return data;
     }
-    return product[0];
+    throw new Error("No Data Found");
   } catch (err) {
     console.log(err);
   }

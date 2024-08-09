@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../store/redux-store";
 import { cartActions } from "../../../store/cart-slice";
 import RedBtn from "../../UI/Button/Button";
+import { uiActions } from "../../../store/ui-slice";
 
 interface Props {
   item: CartItem;
@@ -16,6 +17,15 @@ export default function SingleCartItem({ item }: Props) {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const deleteFromCartHandler = () => {
+    dispatch(
+      uiActions.addNotification({
+        title: "Removed Item from cart!",
+        type: "error",
+      })
+    );
+    setTimeout(() => {
+      dispatch(uiActions.removeNotification());
+    }, 1500);
     dispatch(cartActions.deleteFromCart(item));
   };
   return (

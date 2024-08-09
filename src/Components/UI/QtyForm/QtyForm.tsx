@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../store/redux-store";
 import { cartActions } from "../../../store/cart-slice";
 import { CartItem } from "../../../types";
+import { uiActions } from "../../../store/ui-slice";
 
 interface Props extends PropsWithChildren {
   qty?: number;
@@ -24,6 +25,15 @@ export default function QtyForm(props: Props) {
     if (props.decreaseQty) {
       props.decreaseQty();
     } else if (props.cartItem) {
+      dispatch(
+        uiActions.addNotification({
+          title: "item removed from cart!",
+          type: "error",
+        })
+      );
+      setTimeout(() => {
+        dispatch(uiActions.removeNotification());
+      }, 1500);
       dispatch(cartActions.removeItem(props.cartItem));
     }
   };
@@ -31,6 +41,15 @@ export default function QtyForm(props: Props) {
     if (props.increaseQty) {
       props.increaseQty();
     } else if (props.cartItem && props.cartItem.amount < 10) {
+      dispatch(
+        uiActions.addNotification({
+          title: "item added to cart!",
+          type: "success",
+        })
+      );
+      setTimeout(() => {
+        dispatch(uiActions.removeNotification());
+      }, 1500);
       dispatch(cartActions.addItem(props.cartItem));
     }
   };

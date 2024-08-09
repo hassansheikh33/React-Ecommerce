@@ -4,8 +4,14 @@
   text-align: center;
 }
 
+.container h1 {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  font-size: 2.8rem;
+}
+
 .empty {
-  padding-top: 5rem;
+  padding-top: 3rem;
 }
 
 .cartDetails {

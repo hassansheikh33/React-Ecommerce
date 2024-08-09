@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import classes from "./RootLayout.module.css";
 import Navbar from "../NavBar/Navbar";
 import Footer from "../Footer/Footer";
-import Notification from "../../Notification/Notification";
+import Notification from "../../UI/Notification/Notification";
 
 export default function RootLayout() {
   return (

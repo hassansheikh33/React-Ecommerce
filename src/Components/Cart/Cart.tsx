@@ -5,6 +5,7 @@ import Card from "../UI/Card/Card";
 import SingleCartItem from "./CartItem/CartItem";
 import Button from "../UI/Button/Button";
 import { cartActions } from "../../store/cart-slice";
+import { uiActions } from "../../store/ui-slice";
 
 export default function Cart() {
   const cartItems = useSelector((state: RootState) => state.cart.items);
@@ -20,13 +21,22 @@ export default function Cart() {
   };
 
   const clearCartHandler = () => {
+    dispatch(
+      uiActions.addNotification({
+        title: "Cart Empty!",
+        type: "error",
+      })
+    );
+    setTimeout(() => {
+      dispatch(uiActions.removeNotification());
+    }, 1500);
     dispatch(cartActions.clearCart());
   };
   return (
     <>
       {cartItems.length > 0 && (
         <div className={classes.container}>
-          <h1 onClick={() => console.log(cartItems)}>
+          <h1>
             Your <span className={classes.red}>Cart</span>
           </h1>
           <div className={classes.cartDetails}>
@@ -36,9 +46,9 @@ export default function Cart() {
               ))}
             </div>
             <Card className={classes.ItemSummary}>
-              <h3 className={classes.summaryHeading}>
+              <h2 className={classes.summaryHeading}>
                 Cart <span className={classes.summary}>Summary</span>
-              </h3>
+              </h2>
               <hr />
               <p>Total Amount: ${totalAmount.toFixed(2)}</p>
               <p>Total Number of Items: {NumOfItems}</p>
