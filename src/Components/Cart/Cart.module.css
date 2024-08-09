@@ -13,10 +13,6 @@
   font-size: 2.8rem;
 }
 
-.empty {
-  padding-top: 3rem;
-}
-
 .cartDetails {
   display: flex;
   justify-content: space-evenly;
