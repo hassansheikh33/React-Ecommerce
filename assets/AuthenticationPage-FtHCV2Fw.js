@@ -1,1 +1,0 @@
-import{j as t}from"./index-CMG2QVLe.js";const n={};function e(){return t.jsx("div",{children:t.jsx("h1",{className:n.heading,children:"Authentication Page"})})}function s(){return t.jsx(e,{})}export{s as default};
