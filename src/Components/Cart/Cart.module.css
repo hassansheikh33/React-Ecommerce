@@ -1,6 +1,9 @@
 .container {
   width: 90%;
   margin: auto;
+}
+
+.textContainer {
   text-align: center;
 }
 

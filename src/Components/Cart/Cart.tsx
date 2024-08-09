@@ -6,6 +6,7 @@ import SingleCartItem from "./CartItem/CartItem";
 import Button from "../UI/Button/Button";
 import { cartActions } from "../../store/cart-slice";
 import { uiActions } from "../../store/ui-slice";
+import BrowseCategory from "../BrowseCategory/BrowseCategory";
 
 export default function Cart() {
   const cartItems = useSelector((state: RootState) => state.cart.items);
@@ -64,10 +65,13 @@ export default function Cart() {
       )}
       {cartItems.length === 0 && (
         <div className={`${classes.container} ${classes.empty}`}>
-          <h1>
-            Your Cart is <span className={classes.red}>Empty</span>
-          </h1>
-          <p>Please add some items to continue</p>
+          <div className={classes.textContainer}>
+            <h1>
+              Your Cart is <span className={classes.red}>Empty</span>
+            </h1>
+            <p>Please add some items to continue</p>
+          </div>
+          <BrowseCategory title="Browse Products" />
         </div>
       )}
     </>
