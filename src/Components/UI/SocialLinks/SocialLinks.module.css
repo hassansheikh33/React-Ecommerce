@@ -1,0 +1,17 @@
+.ContactInfo {
+  display: flex;
+  justify-content: flex-start;
+  column-gap: 15px;
+  align-items: center;
+}
+
+.links {
+  margin-right: 5px;
+  max-height: 2rem;
+  max-width: 2rem;
+  color: grey;
+}
+
+.links:hover {
+  color: red;
+}

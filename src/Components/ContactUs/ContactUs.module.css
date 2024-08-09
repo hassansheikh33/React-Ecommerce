@@ -1,0 +1,80 @@
+.contactUs {
+  width: 90%;
+  margin: auto;
+  margin-bottom: 4rem;
+}
+
+.heading {
+  font-size: 2.8rem;
+  font-weight: 500;
+}
+
+.center {
+  text-align: center;
+}
+
+.red {
+  color: red;
+}
+
+.blue {
+  color: rgb(52, 112, 243);
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: auto;
+}
+
+.textContainer,
+.formContainer {
+  width: 40%;
+}
+
+.icon {
+  max-height: 1.5rem;
+  max-width: 1.5rem;
+  color: red;
+}
+
+.ContactInfo {
+  display: flex;
+  justify-content: flex-start;
+  column-gap: 15px;
+  align-items: center;
+}
+
+.field {
+  padding: 0;
+  border: none;
+  margin: 0;
+  margin-bottom: 1rem;
+}
+
+.field label {
+  display: block;
+}
+
+.field textarea,
+input {
+  width: 100%;
+  border: 1px solid grey;
+  padding: 10px 5px;
+  padding-right: 0;
+  padding-inline-start: 5px;
+  font-size: 1rem;
+  border-radius: 5px;
+}
+
+.inquiry {
+  width: 102%;
+  background-color: rgb(52, 112, 243);
+}
