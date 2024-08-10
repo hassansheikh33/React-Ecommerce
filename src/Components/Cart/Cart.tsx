@@ -37,7 +37,7 @@ export default function Cart() {
     <>
       {cartItems.length > 0 && (
         <div className={classes.container}>
-          <h1>
+          <h1 className={classes.center}>
             Your <span className={classes.red}>Cart</span>
           </h1>
           <div className={classes.cartDetails}>
@@ -46,7 +46,7 @@ export default function Cart() {
                 <SingleCartItem item={item} key={item.id} />
               ))}
             </div>
-            <Card className={classes.ItemSummary}>
+            <Card className={`${classes.ItemSummary} ${classes.center}`}>
               <h2 className={classes.summaryHeading}>
                 Cart <span className={classes.summary}>Summary</span>
               </h2>
@@ -58,14 +58,17 @@ export default function Cart() {
               </Button>
             </Card>
           </div>
-          <Button onClick={clearCartHandler} className={classes.clear}>
-            Clear Cart
-          </Button>
+          <p className={classes.center}>
+            <Button onClick={clearCartHandler} className={classes.clear}>
+              Clear Cart
+            </Button>
+          </p>
+          <BrowseCategory title="Browse More Products" />
         </div>
       )}
       {cartItems.length === 0 && (
         <div className={`${classes.container} ${classes.empty}`}>
-          <div className={classes.textContainer}>
+          <div className={classes.center}>
             <h1>
               Your Cart is <span className={classes.red}>Empty</span>
             </h1>

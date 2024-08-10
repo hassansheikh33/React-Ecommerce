@@ -24,6 +24,7 @@
 
 .category {
   width: 35%;
+  cursor: pointer;
 }
 
 .image {

@@ -72,6 +72,10 @@ export default function Authentication() {
     <div className={classes.container}>
       <h1 className={classes.heading}>Login/Signup</h1>
       <Card className={classes.formContainer}>
+        <h2>
+          Welcome! Please <span className={classes.red}>Login</span> to make any
+          purchase.
+        </h2>
         <form onSubmit={submitHandler}>
           <fieldset className={classes.fieldset}>
             <label htmlFor="Email">Email*</label>
