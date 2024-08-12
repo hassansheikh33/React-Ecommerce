@@ -1,12 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { NotificationType } from "../types";
+import { getToken } from "../Components/Authentication/Authentication";
 
 let initialState: {
   notifications: NotificationType[];
   toggleNav: boolean;
+  loading: boolean;
+  token: string | null;
 } = {
   notifications: [],
   toggleNav: false,
+  loading: false,
+  token: getToken(),
 };
 
 const uiSlice = createSlice({
@@ -22,9 +27,17 @@ const uiSlice = createSlice({
     removeNotification(state) {
       state.notifications.shift();
     },
-    // clearNotification(state) {
-    //   state.notification = null;
-    // },
+    setLoading(state, action: PayloadAction<boolean>) {
+      state.loading = action.payload;
+    },
+    setToken(state, action: PayloadAction<string>) {
+      localStorage.setItem("token", action.payload);
+      state.token = action.payload;
+    },
+    clearToken(state) {
+      state.token = null;
+      localStorage.clear();
+    },
   },
 });
 

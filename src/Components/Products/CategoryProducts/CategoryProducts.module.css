@@ -7,9 +7,7 @@
 .filter {
   width: 80%;
   margin: 3rem auto 3rem auto;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  text-align: right;
 }
 
 .label {

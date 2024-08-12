@@ -10,6 +10,7 @@ import { CategoryProductsLoader } from "./Pages/CategoryProductsPage.tsx";
 import { AllProductsLoader } from "./Pages/AllProductsPage.tsx";
 import { singleProductLoader } from "./Pages/ProductDescriptionPage.tsx";
 import { cartLoader } from "./Pages/CartPage";
+import { authLoader } from "./Pages/AuthenticationPage";
 
 const router = createBrowserRouter(
   [
@@ -57,6 +58,7 @@ const router = createBrowserRouter(
         {
           path: "/auth",
           Component: lazy(() => import("./Pages/AuthenticationPage")),
+          loader: authLoader,
         },
       ],
     },
