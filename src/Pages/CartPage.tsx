@@ -1,6 +1,6 @@
 import { LoaderFunction, Outlet, redirect } from "react-router-dom";
 import Cart from "../Components/Cart/Cart";
-import { getToken } from "../Components/Authentication/Authentication";
+import { getToken } from "../Token/util";
 
 export default function CartPage() {
   return <Cart />;

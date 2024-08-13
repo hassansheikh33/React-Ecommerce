@@ -3,7 +3,9 @@ import {
   redirect,
   RouterProvider,
 } from "react-router-dom";
-import RootLayout from "./Components/Layout/RootLayout/RootLayout";
+import RootLayout, {
+  logoutAction,
+} from "./Components/Layout/RootLayout/RootLayout";
 import ErrorElement from "./Components/Error/ErrorElement";
 import { lazy } from "react";
 import { CategoryProductsLoader } from "./Pages/CategoryProductsPage.tsx";
@@ -59,6 +61,10 @@ const router = createBrowserRouter(
           path: "/auth",
           Component: lazy(() => import("./Pages/AuthenticationPage")),
           loader: authLoader,
+        },
+        {
+          path: "/logout",
+          action: logoutAction,
         },
       ],
     },

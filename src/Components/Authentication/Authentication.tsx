@@ -81,9 +81,12 @@ export default function Authentication() {
             password
           );
           dispatch(uiActions.setToken(SignIninfo.user.uid));
+          const expirationDate = new Date();
+          expirationDate.setHours(expirationDate.getHours() + 1);
+          localStorage.setItem("expiration", expirationDate.toISOString());
+          setNofication("success", "Login Successfull");
           dispatch(uiActions.setLoading(false));
           navigate("/");
-          setNofication("success", "Log in Successfull");
         } catch (err: any) {
           //only display the real err message, currently displays Firebase: Error: (auth/ real error message)
           setNofication("error", err.message);
@@ -136,8 +139,11 @@ export default function Authentication() {
           const userDocReference = doc(fs, "users", uid);
           await setDoc(userDocReference, user);
           dispatch(uiActions.setToken(uid));
-          dispatch(uiActions.setLoading(false));
+          const expirationDate = new Date();
+          expirationDate.setHours(expirationDate.getHours() + 1);
+          localStorage.setItem("expiration", expirationDate.toISOString());
           setNofication("success", "User Registered Successfully.");
+          dispatch(uiActions.setLoading(false));
           navigate("/");
         } catch (err: any) {
           //only display the real err message, currently displays Firebase: Error: (auth/ real error message)
@@ -224,8 +230,3 @@ export default function Authentication() {
     </div>
   );
 }
-
-export const getToken = () => {
-  const token = localStorage.getItem("token");
-  return token;
-};

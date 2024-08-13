@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { NotificationType } from "../types";
-import { getToken } from "../Components/Authentication/Authentication";
+import { getToken } from "../Token/util";
 
 let initialState: {
   notifications: NotificationType[];

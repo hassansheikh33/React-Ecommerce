@@ -1,7 +1,6 @@
 import { LoaderFunction, Outlet, redirect } from "react-router-dom";
-import Authentication, {
-  getToken,
-} from "../Components/Authentication/Authentication";
+import Authentication from "../Components/Authentication/Authentication";
+import { getToken } from "../Token/util";
 
 export default function AuthenticationPage() {
   return <Authentication />;
