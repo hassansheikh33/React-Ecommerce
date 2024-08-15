@@ -14,9 +14,10 @@ export const getToken = () => {
   const token = localStorage.getItem("token");
   if (token) {
     const duration = getDuration();
-    if (duration && duration > 0) {
-      return token;
+    if (duration && duration <= 0) {
+      return "token expired";
     }
+    return token;
   }
   return null;
 };

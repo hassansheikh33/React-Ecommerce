@@ -2,9 +2,8 @@ import { ChangeEvent, PropsWithChildren } from "react";
 import classes from "./QtyForm.module.css";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../store/redux-store";
-import { cartActions } from "../../../store/cart-slice";
 import { CartItem } from "../../../types";
-import { uiActions } from "../../../store/ui-slice";
+import { addToCart, removeOneFromCart } from "../../../store/cart-thunks";
 
 interface Props extends PropsWithChildren {
   qty?: number;
@@ -12,6 +11,7 @@ interface Props extends PropsWithChildren {
   increaseQty?: () => void;
   decreaseQty?: () => void;
   cartItem?: CartItem;
+  uid?: string | null;
 }
 
 export default function QtyForm(props: Props) {
@@ -24,33 +24,15 @@ export default function QtyForm(props: Props) {
   const decreaseHandler = () => {
     if (props.decreaseQty) {
       props.decreaseQty();
-    } else if (props.cartItem) {
-      dispatch(
-        uiActions.addNotification({
-          title: "item removed from cart!",
-          type: "error",
-        })
-      );
-      setTimeout(() => {
-        dispatch(uiActions.removeNotification());
-      }, 1500);
-      dispatch(cartActions.removeItem(props.cartItem));
+    } else if (props.cartItem && props.uid) {
+      dispatch(removeOneFromCart(props.uid, props.cartItem));
     }
   };
   const increaseHandler = () => {
     if (props.increaseQty) {
       props.increaseQty();
-    } else if (props.cartItem && props.cartItem.amount < 10) {
-      dispatch(
-        uiActions.addNotification({
-          title: "item added to cart!",
-          type: "success",
-        })
-      );
-      setTimeout(() => {
-        dispatch(uiActions.removeNotification());
-      }, 1500);
-      dispatch(cartActions.addItem(props.cartItem));
+    } else if (props.cartItem && props.cartItem.amount < 10 && props.uid) {
+      dispatch(addToCart(props.uid, props.cartItem));
     }
   };
   return (

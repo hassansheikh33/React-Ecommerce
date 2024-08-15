@@ -4,12 +4,14 @@ import { AppDispatch, RootState } from "../../store/redux-store";
 import Card from "../UI/Card/Card";
 import SingleCartItem from "./CartItem/CartItem";
 import Button from "../UI/Button/Button";
-import { cartActions } from "../../store/cart-slice";
-import { uiActions } from "../../store/ui-slice";
 import BrowseCategory from "../BrowseCategory/BrowseCategory";
+import { fetchCart, removeAll } from "../../store/cart-thunks";
+import { getToken } from "../../Util/token";
+import { useEffect } from "react";
 
 export default function Cart() {
-  const cartItems = useSelector((state: RootState) => state.cart.items);
+  const uid = getToken();
+  const cartItems = useSelector((state: RootState) => state.cart.cartItems);
   const totalAmount = useSelector((state: RootState) => state.cart.totalAmount);
   const NumOfItems = useSelector(
     (state: RootState) => state.cart.totalNumItems
@@ -18,21 +20,26 @@ export default function Cart() {
   const dispatch = useDispatch<AppDispatch>();
 
   const orderHandler = () => {
-    dispatch(cartActions.clearCart());
+    if (uid)
+      dispatch(
+        removeAll(uid, {
+          title: "Order Made!",
+          type: "success",
+        })
+      );
   };
 
   const clearCartHandler = () => {
-    dispatch(
-      uiActions.addNotification({
-        title: "Cart Empty!",
-        type: "error",
-      })
-    );
-    setTimeout(() => {
-      dispatch(uiActions.removeNotification());
-    }, 1500);
-    dispatch(cartActions.clearCart());
+    if (uid)
+      dispatch(removeAll(uid, { title: "Cart is Empty!", type: "error" }));
   };
+
+  useEffect(() => {
+    if (uid) {
+      dispatch(fetchCart(uid));
+    }
+  }, [uid, dispatch]);
+
   return (
     <>
       {cartItems.length > 0 && (

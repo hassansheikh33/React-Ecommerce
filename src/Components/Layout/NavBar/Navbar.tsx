@@ -2,7 +2,7 @@ import { Form, Link, NavLink } from "react-router-dom";
 import classes from "./Navbar.module.css";
 import person from "../../../assets/person.svg";
 import cart from "../../../assets/cart.svg";
-import { getToken } from "../../../Token/util";
+import { getToken } from "../../../Util/token";
 
 export default function Navbar() {
   const token = getToken();

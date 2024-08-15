@@ -1,12 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { CartItem } from "../types";
+import { Cart, CartItem } from "../types";
 
-let initialState: {
-  items: CartItem[];
-  totalAmount: number;
-  totalNumItems: number;
-} = {
-  items: [],
+let initialState: Cart = {
+  cartItems: [],
   totalAmount: 0,
   totalNumItems: 0,
 };
@@ -18,32 +14,32 @@ const cartSlice = createSlice({
     addItem(state, action: PayloadAction<CartItem>) {
       state.totalAmount += action.payload.price;
       state.totalNumItems += action.payload.amount;
-      const indexToUpdate = state.items.findIndex(
+      const indexToUpdate = state.cartItems.findIndex(
         (item) => item.id === action.payload.id
       );
       if (indexToUpdate > -1) {
         //check if item already exists in the cart
-        let itemToUpdate = state.items[indexToUpdate];
+        let itemToUpdate = state.cartItems[indexToUpdate];
         itemToUpdate = {
           ...itemToUpdate,
           amount: itemToUpdate.amount + action.payload.amount,
         }; //updating the amount here
-        state.items[indexToUpdate] = itemToUpdate;
+        state.cartItems[indexToUpdate] = itemToUpdate;
       } else {
         //if item doesnt already exist in the cart, push it as a new item obj
-        state.items.push(action.payload);
+        state.cartItems.push(action.payload);
       }
     },
     removeItem(state, action: PayloadAction<CartItem>) {
       state.totalAmount -= action.payload.price;
       state.totalNumItems -= action.payload.amount;
-      const indexToUpdate = state.items.findIndex(
+      const indexToUpdate = state.cartItems.findIndex(
         (item) => item.id === action.payload.id
       );
       if (indexToUpdate > -1) {
-        let itemToUpdate = state.items[indexToUpdate];
+        let itemToUpdate = state.cartItems[indexToUpdate];
         if (itemToUpdate.amount === 1) {
-          state.items = state.items.filter(
+          state.cartItems = state.cartItems.filter(
             (item) => item.id !== action.payload.id
           );
         } else {
@@ -51,20 +47,27 @@ const cartSlice = createSlice({
             ...itemToUpdate,
             amount: itemToUpdate.amount - action.payload.amount,
           };
-          state.items[indexToUpdate] = itemToUpdate;
+          state.cartItems[indexToUpdate] = itemToUpdate;
         }
       }
     },
-    deleteFromCart(state, action: PayloadAction<CartItem>) {
+    deleteOneItem(state, action: PayloadAction<CartItem>) {
       state.totalAmount = state.totalAmount -=
         action.payload.price * action.payload.amount;
       state.totalNumItems = state.totalNumItems -= action.payload.amount;
-      state.items = state.items.filter((item) => item.id !== action.payload.id);
+      state.cartItems = state.cartItems.filter(
+        (item) => item.id !== action.payload.id
+      );
     },
-    clearCart(state) {
+    deleteAll(state) {
       state.totalAmount = 0;
       state.totalNumItems = 0;
-      state.items = [];
+      state.cartItems = [];
+    },
+    setCart(state, action: PayloadAction<Cart>) {
+      state.cartItems = action.payload.cartItems;
+      state.totalAmount = action.payload.totalAmount;
+      state.totalNumItems = action.payload.totalNumItems;
     },
   },
 });

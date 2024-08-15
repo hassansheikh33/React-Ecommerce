@@ -8,14 +8,15 @@ import classes from "./ProductDescription.module.css";
 import { Product } from "../../../types";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../store/redux-store";
-import { cartActions } from "../../../store/cart-slice";
 import { useState } from "react";
 import QtyForm from "../../UI/QtyForm/QtyForm";
 import Button from "../../UI/Button/Button";
-import { uiActions } from "../../../store/ui-slice";
 import ProductItem from "../ProductItem/ProductItem";
+import { addToCart } from "../../../store/cart-thunks";
+import { getToken } from "../../../Util/token";
 
 export default function ProductDescription() {
+  const uid = getToken();
   const [qty, setQty] = useState<number>(1);
   const params = useParams<Params>();
   const productId = Number(params.productId);
@@ -31,16 +32,10 @@ export default function ProductDescription() {
   const navigate = useNavigate();
 
   const addtoCartHandler = () => {
-    dispatch(
-      uiActions.addNotification({
-        title: "item added to cart!",
-        type: "success",
-      })
-    );
-    setTimeout(() => {
-      dispatch(uiActions.removeNotification());
-    }, 1500);
-    dispatch(cartActions.addItem({ ...product, amount: qty }));
+    if (uid) {
+      dispatch(addToCart(uid, { ...product, amount: qty }));
+    }
+    setQty(1);
   };
 
   const increaseQty = () => {
@@ -99,7 +94,9 @@ export default function ProductDescription() {
                 key={index}
                 product={item}
                 onClick={() =>
-                  navigate(`shop/category/${item.category}/${item.id}`)
+                  navigate(`/shop/category/${item.category}/${item.id}`, {
+                    replace: true,
+                  })
                 }
               ></ProductItem>
             );

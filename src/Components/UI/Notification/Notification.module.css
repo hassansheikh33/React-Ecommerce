@@ -22,3 +22,7 @@
 .success {
   background-color: greenyellow;
 }
+
+.progress {
+  background-color: rgb(52, 112, 243);
+}

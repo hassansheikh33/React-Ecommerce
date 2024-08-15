@@ -12,14 +12,9 @@ import {
 } from "firebase/auth";
 import { auth, fs } from "../../Config/firebaseConfig";
 import { doc, setDoc } from "firebase/firestore";
+import { setNofication } from "../../Util/notification";
 
 export default function Authentication() {
-  const setNofication = (type: "error" | "success", message: string) => {
-    dispatch(uiActions.addNotification({ title: message, type: type }));
-    setTimeout(() => {
-      dispatch(uiActions.removeNotification());
-    }, 3000);
-  };
   const loading = useSelector((state: RootState) => state.ui.loading);
   const dispatch = useDispatch<AppDispatch>();
   const [email, setEmail] = useState<string>("");
@@ -82,7 +77,7 @@ export default function Authentication() {
           );
           dispatch(uiActions.setToken(SignIninfo.user.uid));
           const expirationDate = new Date();
-          expirationDate.setHours(expirationDate.getHours() + 1);
+          expirationDate.setMinutes(expirationDate.getMinutes() + 30);
           localStorage.setItem("expiration", expirationDate.toISOString());
           setNofication("success", "Login Successfull");
           dispatch(uiActions.setLoading(false));
@@ -131,16 +126,19 @@ export default function Authentication() {
           const uid = signUpInfo.user.uid;
           const user = {
             email: email.trim(),
+            name: name.trim(),
             uid,
-            cartItems: [],
-            totalNumItems: 0,
-            totalAmount: 0,
+            cart: {
+              cartItems: [],
+              totalNumItems: 0,
+              totalAmount: 0,
+            },
           };
           const userDocReference = doc(fs, "users", uid);
           await setDoc(userDocReference, user);
           dispatch(uiActions.setToken(uid));
           const expirationDate = new Date();
-          expirationDate.setHours(expirationDate.getHours() + 1);
+          expirationDate.setMinutes(expirationDate.getMinutes() + 30);
           localStorage.setItem("expiration", expirationDate.toISOString());
           setNofication("success", "User Registered Successfully.");
           dispatch(uiActions.setLoading(false));

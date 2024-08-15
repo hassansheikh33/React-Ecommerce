@@ -3,9 +3,8 @@ import {
   redirect,
   RouterProvider,
 } from "react-router-dom";
-import RootLayout, {
-  logoutAction,
-} from "./Components/Layout/RootLayout/RootLayout";
+import { logoutAction, logoutLoader } from "./Pages/Logout.tsx";
+import RootLayout from "./Components/Layout/RootLayout/RootLayout";
 import ErrorElement from "./Components/Error/ErrorElement";
 import { lazy } from "react";
 import { CategoryProductsLoader } from "./Pages/CategoryProductsPage.tsx";
@@ -64,6 +63,7 @@ const router = createBrowserRouter(
         },
         {
           path: "/logout",
+          loader: logoutLoader,
           action: logoutAction,
         },
       ],

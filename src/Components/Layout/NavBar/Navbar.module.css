@@ -65,6 +65,7 @@
 
 .logout {
   cursor: pointer;
+  padding: 0;
 }
 
 .logout button {
@@ -72,4 +73,6 @@
   background-color: transparent;
   color: inherit;
   font: inherit;
+  padding: 10px;
+  cursor: pointer;
 }

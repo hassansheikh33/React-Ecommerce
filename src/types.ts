@@ -19,3 +19,20 @@ export interface NotificationType {
   title: string;
   type: "error" | "success";
 }
+
+export interface Cart {
+  cartItems: CartItem[];
+  totalAmount: number;
+  totalNumItems: number;
+}
+
+export interface UserData {
+  uid: string;
+  name: string;
+  email: string;
+  cart: {
+    cartItems: CartItem[];
+    totalAmount: number;
+    totalNumItems: number;
+  };
+}

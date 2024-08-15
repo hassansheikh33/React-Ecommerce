@@ -1,49 +1,38 @@
 import { Suspense, useEffect } from "react";
-import { Outlet, redirect, useSubmit } from "react-router-dom";
+import { Outlet, useSubmit } from "react-router-dom";
 import classes from "./RootLayout.module.css";
 import Navbar from "../NavBar/Navbar";
 import Footer from "../Footer/Footer";
 import Notification from "../../UI/Notification/Notification";
-import { getDuration, getToken } from "../../../Token/util";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../store/redux-store";
-import { uiActions } from "../../../store/ui-slice";
+import { getDuration, getToken } from "../../../Util/token";
+import { setNofication } from "../../../Util/notification";
 
 export default function RootLayout() {
-  const submit = useSubmit();
   const token = getToken();
-  const dispatch = useDispatch<AppDispatch>();
+  const submit = useSubmit();
 
   useEffect(() => {
-    if (!token) {
+    if (!token || token === "token expired") {
       return;
     } else {
       const duration = getDuration();
-      if (duration) {
-        if (duration <= 0) {
-          dispatch(
-            uiActions.addNotification({
-              title: "Session expired! Please login again",
-              type: "error",
-            })
-          );
-          setTimeout(() => dispatch(uiActions.removeNotification()), 2000);
-          submit(null, { method: "POST", action: "/logout" });
-        }
-
+      if (duration && duration > 0) {
         setTimeout(() => {
-          dispatch(
-            uiActions.addNotification({
-              title: "Session expired! Please login again",
-              type: "error",
-            })
-          );
-          setTimeout(() => dispatch(uiActions.removeNotification()), 2000);
-          submit(null, { method: "POST", action: "/logout" });
+          const curToken = getToken();
+          if (curToken && token !== "token expired") {
+            // this condition refrains from executing the below code if the user is already logged out
+            // at the time of token expiration (which was set when user logs in or signs up)
+            setNofication("error", "Session expired, please login again");
+            submit(null, { action: "/logout", method: "POST" });
+            return;
+          }
         }, duration);
+      } else if (duration && duration <= 0) {
+        setNofication("error", "Session expired, please login again");
+        submit(null, { action: "/logout", method: "POST" });
       }
     }
-  }, [token]);
+  }, [token, submit, setNofication]);
 
   return (
     <>
@@ -67,8 +56,3 @@ export default function RootLayout() {
     </>
   );
 }
-
-export const logoutAction = () => {
-  localStorage.clear();
-  return redirect("/auth?mode=login");
-};

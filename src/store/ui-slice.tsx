@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { NotificationType } from "../types";
-import { getToken } from "../Token/util";
+import { getToken } from "../Util/token";
 
 let initialState: {
   notifications: NotificationType[];
@@ -35,8 +35,8 @@ const uiSlice = createSlice({
       state.token = action.payload;
     },
     clearToken(state) {
-      state.token = null;
       localStorage.clear();
+      state.token = null;
     },
   },
 });
