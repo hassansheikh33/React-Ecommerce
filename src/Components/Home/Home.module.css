@@ -6,7 +6,7 @@
 }
 
 .textContainer h1 {
-  font-weight: 400;
+  font-weight: 700;
   font-size: 3rem;
 }
 
@@ -105,6 +105,11 @@
   border-radius: 5px;
 }
 
+.blue {
+  font-weight: 700;
+  color: rgb(52, 112, 243);
+}
+
 .imageCaption {
   margin-top: 0;
 }
@@ -112,4 +117,37 @@
 .read {
   font-weight: 800;
   color: peru;
+}
+
+@media (max-width: 575.98px) {
+  .textContainer {
+    width: 95%;
+  }
+  .textContainer h1 {
+    font-size: 2.3rem;
+    font-weight: 600;
+  }
+  .card {
+    width: 80%;
+    margin: auto;
+  }
+  .cardContainer {
+    flex-direction: column;
+    row-gap: 2rem;
+  }
+  .journal {
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+    height: auto;
+    flex-direction: column;
+    row-gap: 2rem;
+  }
+  .left,
+  .right,
+  .middle {
+    width: 90%;
+  }
+  .journalBtn {
+    padding: 0.5rem;
+  }
 }

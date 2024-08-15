@@ -76,3 +76,59 @@
   padding: 10px;
   cursor: pointer;
 }
+
+.menuBtn {
+  padding: 3px;
+  display: none;
+}
+
+.menuPiece {
+  width: 35px;
+  height: 5px;
+  background-color: black;
+  margin: 5px 0;
+  border-radius: 30px;
+}
+
+.middleBar {
+  width: 25px;
+}
+
+.menuBtn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.crossBtn {
+  text-align: center;
+  width: 35px;
+  cursor: pointer;
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+.crossBtn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+@media (max-width: 575.98px) {
+  .navMenu {
+    display: none;
+  }
+  .menuBtn {
+    display: inline-block;
+  }
+  .show {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 5rem;
+    background-color: white;
+    border-bottom: 1px solid red;
+    width: 100%;
+    align-items: flex-end;
+  }
+  .navItem,
+  .auth,
+  .cart {
+    margin-right: 1rem;
+  }
+}

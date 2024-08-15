@@ -8,13 +8,6 @@ import theJournal from "../../assets/theJournal.png";
 import restockingImage from "../../assets/restocking.jpg";
 import storeImage from "../../assets/store.jpg";
 import BrowseCategory from "../BrowseCategory/BrowseCategory";
-// import Carousel from "../Carousel/Carousel";
-
-// const carouselImageURLs = [
-//   "https://via.placeholder.com/800x400/ff5733/fff",
-//   "https://via.placeholder.com/800x400/33ff57/fff",
-//   "https://via.placeholder.com/800x400/5733ff/fff",
-// ];
 
 const cards = [
   {
@@ -48,7 +41,9 @@ export default function Home() {
     <div className={classes.homeContainer}>
       {/* <Carousel images={carouselImageURLs}></Carousel> */}
       <div className={classes.textContainer}>
-        <h1>Welcome to Our Store</h1>
+        <h1>
+          Welcome to <span className={classes.blue}>Our&nbsp;Store</span>!
+        </h1>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit.
           Necessitatibus dignissimos magni libero aliquam consectetur ullam

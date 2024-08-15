@@ -11,6 +11,7 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  column-gap: 2rem;
 }
 
 .categoryName {
@@ -28,9 +29,31 @@
 }
 
 .image {
-  max-width: 90%;
-  margin-right: auto;
-  margin-left: auto;
-  height: auto;
+  width: 100%;
+  min-height: 270px;
   border-radius: 5px;
+}
+
+@media (max-width: 575.98px) {
+  .browseCategories h2 {
+    font-size: 2.2rem;
+    font-weight: 600;
+  }
+  .categoriesContainer {
+    flex-direction: column;
+    row-gap: 2rem;
+    align-items: center;
+  }
+  .category {
+    width: 90%;
+    position: relative;
+  }
+  .categoryName {
+    position: absolute;
+    z-index: 20;
+    top: 75%;
+  }
+  .browseCategories {
+    margin-bottom: 4rem;
+  }
 }

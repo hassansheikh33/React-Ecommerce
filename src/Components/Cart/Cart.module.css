@@ -52,3 +52,20 @@
   margin-top: 1.5rem;
   background-color: red;
 }
+
+@media (max-width: 575.98px) {
+  .container h1 {
+    font-size: 2.2rem;
+  }
+  .cartDetails {
+    flex-direction: column;
+    row-gap: 2rem;
+  }
+  .items {
+    width: 100%;
+  }
+  .ItemSummary {
+    width: 60%;
+    margin: auto;
+  }
+}

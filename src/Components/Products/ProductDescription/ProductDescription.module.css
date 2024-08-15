@@ -54,3 +54,24 @@
   column-gap: 2rem;
   row-gap: 2rem;
 }
+
+@media (max-width: 575.98px) {
+  .Itemcontainer {
+    flex-direction: column;
+  }
+  .imageContainer {
+    width: 50%;
+  }
+  .details {
+    width: 80%;
+  }
+  .details h1 {
+    font-size: 1.7rem;
+  }
+  .details p {
+    font-size: 1rem;
+  }
+  .moreItems h2 {
+    font-size: 1.5rem;
+  }
+}

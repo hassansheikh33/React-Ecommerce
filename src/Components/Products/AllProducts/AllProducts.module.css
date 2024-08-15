@@ -22,3 +22,17 @@
   border-radius: 5px;
   width: 30%;
 }
+
+@media (max-width: 575.98px) {
+  .filter {
+    width: 85%;
+  }
+  .label {
+    font-size: 1rem;
+    margin-right: 0.5rem;
+  }
+  .select {
+    font-size: 0.8rem;
+    width: 50%;
+  }
+}

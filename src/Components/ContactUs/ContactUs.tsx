@@ -55,7 +55,7 @@ export default function ContactUs() {
           </h2>
           <div className={classes.ContactInfo}>
             <svg
-              className={classes.icon}
+              className={`${classes.icon} ${classes.location}`}
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"

@@ -3,9 +3,16 @@ import classes from "./Navbar.module.css";
 import person from "../../../assets/person.svg";
 import cart from "../../../assets/cart.svg";
 import { getToken } from "../../../Util/token";
+import { useState } from "react";
 
 export default function Navbar() {
+  const [show, setShow] = useState<boolean>(false);
+  const showMenu = () => setShow(true);
   const token = getToken();
+
+  const closeNavMenu = () => {
+    setShow(false);
+  };
   return (
     <nav className={classes.nav}>
       <Link to="/" className={classes.link}>
@@ -13,7 +20,22 @@ export default function Navbar() {
           React<span className={classes.red}>Commerce</span>
         </h1>
       </Link>
-      <div className={classes.navMenu}>
+      {!show && (
+        <div className={classes.menuBtn} onClick={showMenu}>
+          <div className={classes.menuPiece}></div>
+          <div className={`${classes.menuPiece} ${classes.middleBar}`}></div>
+          <div className={classes.menuPiece}></div>
+        </div>
+      )}
+      {show && (
+        <div className={classes.crossBtn} onClick={closeNavMenu}>
+          X
+        </div>
+      )}
+      <div
+        onClick={closeNavMenu}
+        className={`${classes.navMenu} ${show ? classes.show : ""}`}
+      >
         <NavLink
           className={({ isActive }) =>
             isActive

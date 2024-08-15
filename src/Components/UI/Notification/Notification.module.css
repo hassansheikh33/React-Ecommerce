@@ -26,3 +26,13 @@
 .progress {
   background-color: rgb(52, 112, 243);
 }
+
+@media (max-width: 575.98px) {
+  .notificationsContainer {
+    max-width: 50%;
+  }
+  .notification {
+    padding: 0px 5px;
+    font-size: 1rem;
+  }
+}

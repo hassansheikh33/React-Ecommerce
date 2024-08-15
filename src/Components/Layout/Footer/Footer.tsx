@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import classes from "./Footer.module.css";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 export default function Footer() {
+  const [compShown, setCompShown] = useState<boolean>(false);
+  const [legalShown, setLegalShown] = useState<boolean>(false);
   const emailRef = useRef<HTMLInputElement>(null);
   function subscribeHandler() {
     if (
@@ -21,44 +23,64 @@ export default function Footer() {
   return (
     <footer className={classes.footer}>
       <h1 className={classes.h1}>
-        <Link to="/" className={`${classes.link} ${classes.compName}`}>
+        <Link to="/" className={classes.link}>
           React<span className={classes.red}>Commerce</span>
         </Link>
       </h1>
       <div className={classes.upperContainer}>
-        <div className={classes.links}>
-          <h3 className={classes.columnHeading}>Company</h3>
-          <Link className={classes.link} to="/">
-            Home
-          </Link>
-          <Link className={classes.link} to="/shop">
-            Shop
-          </Link>
-          <Link className={classes.link} to="/auth">
-            Login/Signup
-          </Link>
-          <Link className={classes.link} to="/contactUs">
-            Contact Us
-          </Link>
+        <div className={classes.column}>
+          <h3
+            onClick={() => setCompShown((prevState) => !prevState)}
+            className={classes.columnHeading}
+          >
+            Company {compShown ? "<" : ">"}
+          </h3>
+          <div
+            className={`${classes.links} ${compShown ? classes.compShown : ""}`}
+          >
+            <Link className={classes.link} to="/">
+              Home
+            </Link>
+            <Link className={classes.link} to="/shop">
+              Shop
+            </Link>
+            <Link className={classes.link} to="/auth">
+              Login/Signup
+            </Link>
+            <Link className={classes.link} to="/contactUs">
+              Contact Us
+            </Link>
+          </div>
         </div>
-        <div className={classes.links}>
-          <h3 className={classes.columnHeading}>Legal</h3>
-          <Link className={classes.link} to="">
-            Company Policy
-          </Link>
-          <Link className={classes.link} to="/contactUs">
-            Terms & Conditions
-          </Link>
-          <Link className={classes.link} to="/shop">
-            Terms of Use
-          </Link>
-          <Link className={classes.link} to="/auth">
-            Copyright
-          </Link>
+        <div className={classes.column}>
+          <h3
+            onClick={() => setLegalShown((prevState) => !prevState)}
+            className={classes.columnHeading}
+          >
+            Legal {legalShown ? "<" : ">"}
+          </h3>
+          <div
+            className={`${classes.links} ${
+              legalShown ? classes.legalShown : ""
+            }`}
+          >
+            <Link className={classes.link} to="">
+              Company Policy
+            </Link>
+            <Link className={classes.link} to="/contactUs">
+              Terms & Conditions
+            </Link>
+            <Link className={classes.link} to="/shop">
+              Terms of Use
+            </Link>
+            <Link className={classes.link} to="/auth">
+              Copyright
+            </Link>
+          </div>
         </div>
         <div className={classes.newsLetter}>
           <h3 className={classes.columnHeading}>Subscribe to our newsletter</h3>
-          <form>
+          <form className={classes.form}>
             <input
               className={classes.subEmailInput}
               type="email"

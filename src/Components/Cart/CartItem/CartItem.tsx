@@ -35,13 +35,14 @@ export default function SingleCartItem({ item }: Props) {
           className={classes.itemTitle}
           onClick={() => navigate(`/shop/category/${item.category}/${item.id}`)}
         >
-          {item.title}
+          {item.title.slice(0, 30)}...
         </h2>
         <p>
-          ${item.price.toFixed(2)} * {item.amount} = $
-          {(item.price * item.amount).toFixed(2)}
+          {item.amount} x ${item.price.toFixed(2)} ={" "}
+          <span className={classes.blue}>
+            ${(item.price * item.amount).toFixed(2)}
+          </span>
         </p>
-        <p>id: {item.id}</p>
         <p>
           {item.rating.rate} stars ({item.rating.count} ratings)
         </p>

@@ -24,3 +24,21 @@
   margin-left: 0.5rem;
   background-color: red;
 }
+
+.blue {
+  color: rgb(52, 112, 243);
+  font-weight: 500;
+}
+
+@media (max-width: 575.98px) {
+  .itemTitle {
+    font-size: 1.2rem;
+  }
+  .image {
+    width: 35%;
+    margin: auto;
+  }
+  .detailsContainer {
+    width: 50%;
+  }
+}

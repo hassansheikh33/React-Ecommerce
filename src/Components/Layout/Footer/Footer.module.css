@@ -1,9 +1,10 @@
 .footer {
   margin-top: 2rem;
+  padding-top: 1rem;
   background-color: black;
   color: white;
   width: 100%;
-  height: 20rem;
+  height: 17rem;
 }
 
 .upperContainer {
@@ -31,8 +32,13 @@
   margin-bottom: 0.4rem;
 }
 
+.columnHeading:hover {
+  color: whitesmoke;
+}
+
 .credits {
   text-align: center;
+  margin: 0;
   margin-top: 1.1rem;
 }
 
@@ -49,17 +55,19 @@
   flex-direction: column;
   height: 100%;
   justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+}
+
+.column {
+  width: 25%;
 }
 
 .h1 {
   font-size: 2rem;
   letter-spacing: -0.1rem;
-  padding-top: 1rem;
   margin: 0;
-  width: 20%;
-  margin-right: auto;
   text-align: center;
-  margin-left: auto;
 }
 
 .red {
@@ -89,4 +97,45 @@
 .subBtn {
   background-color: red;
   color: white;
+}
+
+@media (max-width: 575.98px) {
+  .footer {
+    height: auto;
+    padding-bottom: 0.5rem;
+  }
+  .h1 {
+    font-size: 1.7rem;
+    margin-bottom: 1rem;
+  }
+  .columnHeading {
+    font-size: 1.1rem;
+  }
+  .upperContainer {
+    flex-direction: column;
+    row-gap: 1rem;
+  }
+  .links,
+  .newsLetter {
+    width: 80%;
+  }
+  .link {
+    margin-bottom: 0.5rem;
+  }
+  .form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
+  }
+  .links {
+    display: none;
+  }
+  .column {
+    width: 50%;
+  }
+  .compShown,
+  .legalShown {
+    display: flex;
+    width: 100%;
+  }
 }

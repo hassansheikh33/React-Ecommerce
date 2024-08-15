@@ -43,8 +43,17 @@
   background-color: rgb(52, 112, 243);
 }
 
-@media (max-width: 897px) {
+@media (max-width: 575.98px) {
   .productContainer {
-    width: 25%;
+    width: 80%;
+  }
+  .image {
+    width: 60%;
+    height: auto;
+    max-height: 250px;
+  }
+  .priceRating {
+    margin: 1rem auto 1rem auto;
+    width: 80%;
   }
 }

@@ -61,7 +61,7 @@ input:focus-visible {
   display: inline-flex;
   justify-content: center;
   background-color: rgb(52, 112, 243);
-  width: 101.5%;
+  width: 18%;
 }
 
 .changeModeBtn {
@@ -87,5 +87,27 @@ input:focus-visible {
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+/* media queries */
+@media (max-width: 575.98px) {
+  .container {
+    width: 95%;
+  }
+  .heading {
+    font-size: 2.5rem;
+  }
+  .mesText {
+    font-size: 1.1rem;
+  }
+  .fieldset {
+    margin-bottom: 1rem;
+  }
+  .fieldset label {
+    font-size: 1.2rem;
+  }
+  .submitBtn {
+    width: 35%;
   }
 }
