@@ -75,6 +75,11 @@ export default function Navbar() {
           </Link>
         )}
         {token && (
+          <Link className={`${classes.link} ${classes.cart}`} to="/cart">
+            <img className={classes.icon} src={cart} alt="cart icon" />
+          </Link>
+        )}
+        {token && (
           <Form
             method="POST"
             action="/logout"
@@ -82,11 +87,6 @@ export default function Navbar() {
           >
             <button>Logout</button>
           </Form>
-        )}
-        {token && (
-          <Link className={`${classes.link} ${classes.cart}`} to="/cart">
-            <img className={classes.icon} src={cart} alt="cart icon" />
-          </Link>
         )}
       </div>
     </nav>

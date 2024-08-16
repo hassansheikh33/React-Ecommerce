@@ -174,8 +174,11 @@ export default function Authentication() {
         <form onSubmit={submitHandler}>
           {!isLogin && (
             <fieldset className={classes.fieldset}>
-              <label htmlFor="name">Full Name*</label>
+              <label className={classes.label} htmlFor="name">
+                Full Name*
+              </label>
               <input
+                className={classes.input}
                 value={name}
                 placeholder="eg: johndoe@gmail.com"
                 type="text"
@@ -185,8 +188,11 @@ export default function Authentication() {
             </fieldset>
           )}
           <fieldset className={classes.fieldset}>
-            <label htmlFor="Email">Email*</label>
+            <label className={classes.label} htmlFor="Email">
+              Email*
+            </label>
             <input
+              className={classes.input}
               value={email}
               placeholder="eg: johndoe@gmail.com"
               type="email"
@@ -195,8 +201,11 @@ export default function Authentication() {
             />
           </fieldset>
           <fieldset className={classes.fieldset}>
-            <label htmlFor="password">Password* (min 8 chatacters)</label>
+            <label className={classes.label} htmlFor="password">
+              Password* (min 8 chatacters)
+            </label>
             <input
+              className={classes.input}
               value={password}
               placeholder="Enter password"
               onChange={passwordChange}

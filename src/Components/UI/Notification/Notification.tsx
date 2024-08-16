@@ -13,7 +13,11 @@ export default function Notification() {
           <div
             key={index}
             className={`${classes.notification} ${
-              noti.type === "error" ? classes.error : classes.success
+              noti.type === "error"
+                ? classes.error
+                : noti.type === "progress"
+                ? classes.progress
+                : classes.success
             }`}
           >
             <p>{noti.title}</p>

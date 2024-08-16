@@ -17,7 +17,7 @@ export interface CartItem extends Product {
 
 export interface NotificationType {
   title: string;
-  type: "error" | "success";
+  type: "error" | "success" | "progress";
 }
 
 export interface Cart {
@@ -35,4 +35,18 @@ export interface UserData {
     totalAmount: number;
     totalNumItems: number;
   };
+}
+
+export interface FormError {
+  name: string | null;
+  email: string | null;
+  number: string | null;
+  address: string | null;
+  method: string | null;
+}
+
+export interface Order extends UserData {
+  address: string;
+  number: number;
+  payment_method: string;
 }

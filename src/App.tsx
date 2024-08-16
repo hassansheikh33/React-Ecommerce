@@ -12,6 +12,7 @@ import { AllProductsLoader } from "./Pages/AllProductsPage.tsx";
 import { singleProductLoader } from "./Pages/ProductDescriptionPage.tsx";
 import { cartLoader } from "./Pages/CartPage";
 import { authLoader } from "./Pages/AuthenticationPage";
+import { orderLoader } from "./Pages/Order.tsx";
 
 const router = createBrowserRouter(
   [
@@ -51,6 +52,13 @@ const router = createBrowserRouter(
           path: "/cart",
           loader: cartLoader,
           Component: lazy(() => import("./Pages/CartPage")),
+          children: [
+            {
+              path: "/cart/order",
+              Component: lazy(() => import("./Pages/Order.tsx")),
+              loader: orderLoader,
+            },
+          ],
         },
         {
           path: "/contactUs",

@@ -61,12 +61,12 @@
   margin-bottom: 1rem;
 }
 
-.field label {
+.field .label {
   display: block;
 }
 
-.field textarea,
-input {
+.field .textarea,
+.input {
   width: 100%;
   border: 1px solid grey;
   padding: 10px 5px;

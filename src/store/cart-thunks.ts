@@ -1,6 +1,13 @@
-import { doc, getDoc, onSnapshot, updateDoc } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  onSnapshot,
+  updateDoc,
+} from "firebase/firestore";
 import { fs } from "../Config/firebaseConfig";
-import { Cart, CartItem, NotificationType, UserData } from "../types";
+import { Cart, CartItem, NotificationType, Order, UserData } from "../types";
 import { cartActions } from "./cart-slice";
 import { AppDispatch, GetState } from "./redux-store";
 import { uiActions } from "./ui-slice";
@@ -75,5 +82,12 @@ export const removeAll = (uid: string, noti: NotificationType) => {
     const cart = getState().cart;
     await dispatch(updateCart(uid, cart));
     setNofication(noti.type, noti.title);
+  };
+};
+
+export const order = (order: Order) => {
+  return async () => {
+    const collectionRef = collection(fs, "orders");
+    await addDoc(collectionRef, order);
   };
 };

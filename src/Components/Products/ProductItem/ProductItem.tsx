@@ -4,9 +4,9 @@ import Card from "../../UI/Card/Card";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../store/redux-store";
 import Button from "../../UI/Button/Button";
-import { uiActions } from "../../../store/ui-slice";
 import { addToCart } from "../../../store/cart-thunks";
 import { getToken } from "../../../Util/token";
+import { setNofication } from "../../../Util/notification";
 
 interface Props {
   product: Product;
@@ -20,20 +20,17 @@ export default function ProductItem(props: Props) {
     if (uid) {
       dispatch(addToCart(uid, { ...props.product, amount: 1 }));
     } else {
-      dispatch(
-        uiActions.addNotification({
-          title: "Please Login to add items to Cart!",
-          type: "error",
-        })
-      );
-      setTimeout(() => {
-        dispatch(uiActions.removeNotification());
-      }, 2000);
+      setNofication("error", "Please Login to add items to Cart!");
     }
+  };
+
+  const goToProductPage = () => {
+    setNofication("progress", "Redirecting to product description");
+    props.onClick();
   };
   return (
     <Card className={classes.productContainer}>
-      <div className={classes.pointer} onClick={props.onClick}>
+      <div className={classes.pointer} onClick={goToProductPage}>
         <img
           src={props.product.image}
           alt="product image"
@@ -53,7 +50,7 @@ export default function ProductItem(props: Props) {
         <Button onClick={addtoCartHandler} className={classes.red}>
           Add to Cart
         </Button>
-        <Button className={classes.seeDetailsBtn} onClick={props.onClick}>
+        <Button className={classes.seeDetailsBtn} onClick={goToProductPage}>
           See Details
         </Button>
       </div>

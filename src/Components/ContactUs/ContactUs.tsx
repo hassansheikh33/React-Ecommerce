@@ -129,7 +129,7 @@ export default function ContactUs() {
                 id="name"
                 required
                 placeholder="eg: John Doe"
-                className={classes.nameInput}
+                className={classes.input}
               />
             </div>
             <div className={classes.field}>
@@ -142,7 +142,7 @@ export default function ContactUs() {
                 id="email"
                 required
                 placeholder="eg: abc@gmail.com"
-                className={classes.emailInput}
+                className={classes.input}
               />
             </div>
             <div className={classes.field}>
@@ -150,6 +150,7 @@ export default function ContactUs() {
                 Your Inquiry :
               </label>
               <textarea
+                className={classes.textarea}
                 ref={inquiryRef}
                 name="inquiry"
                 id="inquiry"

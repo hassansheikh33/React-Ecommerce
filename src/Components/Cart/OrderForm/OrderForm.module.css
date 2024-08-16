@@ -1,0 +1,64 @@
+.label {
+  width: 100%;
+  font-size: 1.4rem;
+  color: rgb(52, 112, 243);
+  margin-bottom: 0.7rem;
+}
+
+.input {
+  display: block;
+  width: 96%;
+  padding: 0.5rem 1rem;
+  font-size: 1.1rem;
+  border: 1px solid grey;
+  border-radius: 5px;
+}
+
+.input:focus-visible {
+  outline: none;
+}
+
+.fieldset {
+  margin: 0;
+  width: 100%;
+  margin-bottom: 1.2rem;
+  border: none;
+  padding: 0;
+}
+
+.fieldset p {
+  margin: 0;
+}
+
+.textarea {
+  font: inherit;
+  overflow: visible;
+}
+
+.orderFormCard {
+  padding: 1.5rem;
+  margin-top: 3rem;
+}
+
+.orderBtn {
+  background-color: greenyellow;
+}
+
+.red {
+  color: red;
+}
+
+.radioContainer {
+  margin-top: 0.5rem;
+  margin-left: 1rem;
+}
+
+.cardLabel {
+  margin-left: 1rem;
+}
+
+@media (max-width: 575.98px) {
+  .input {
+    width: 91%;
+  }
+}

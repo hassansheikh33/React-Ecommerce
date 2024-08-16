@@ -30,13 +30,13 @@
   margin-bottom: 0.5rem;
 }
 
-label {
+.label {
   width: 100%;
   font-size: 1.4rem;
   margin-bottom: 0.5rem;
 }
 
-input {
+.input {
   display: block;
   width: 96%;
   padding: 0.5rem 1rem;
@@ -45,7 +45,7 @@ input {
   border-radius: 5px;
 }
 
-input:focus-visible {
+.input:focus-visible {
   outline: none;
 }
 
@@ -107,10 +107,10 @@ input:focus-visible {
   .fieldset {
     margin-bottom: 1rem;
   }
-  .fieldset label {
+  .fieldset .label {
     font-size: 1rem;
   }
-  .fieldset input {
+  .fieldset .input {
     width: 90%;
     padding: 0.5rem;
   }

@@ -14,6 +14,7 @@ import Button from "../../UI/Button/Button";
 import ProductItem from "../ProductItem/ProductItem";
 import { addToCart } from "../../../store/cart-thunks";
 import { getToken } from "../../../Util/token";
+import { setNofication } from "../../../Util/notification";
 
 export default function ProductDescription() {
   const uid = getToken();
@@ -34,6 +35,8 @@ export default function ProductDescription() {
   const addtoCartHandler = () => {
     if (uid) {
       dispatch(addToCart(uid, { ...product, amount: qty }));
+    } else {
+      setNofication("error", "Please Login to add items to Cart!");
     }
     setQty(1);
   };

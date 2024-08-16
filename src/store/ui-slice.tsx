@@ -7,11 +7,13 @@ let initialState: {
   toggleNav: boolean;
   loading: boolean;
   token: string | null;
+  orderFormShown: boolean;
 } = {
   notifications: [],
   toggleNav: false,
   loading: false,
   token: getToken(),
+  orderFormShown: false,
 };
 
 const uiSlice = createSlice({
@@ -37,6 +39,9 @@ const uiSlice = createSlice({
     clearToken(state) {
       localStorage.clear();
       state.token = null;
+    },
+    setOrderFormShown(state, action: PayloadAction<boolean>) {
+      state.orderFormShown = action.payload;
     },
   },
 });
