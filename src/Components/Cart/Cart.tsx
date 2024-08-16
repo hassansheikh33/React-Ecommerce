@@ -46,6 +46,11 @@ export default function Cart() {
         <div className={classes.container}>
           <h1 className={classes.center}>
             Your <span className={classes.red}>Cart</span>
+            <p className={classes.center}>
+              <Button onClick={clearCartHandler} className={classes.clear}>
+                Clear Cart
+              </Button>
+            </p>
           </h1>
           <div className={classes.cartDetails}>
             <div className={classes.items}>
@@ -65,11 +70,6 @@ export default function Cart() {
               </Button>
             </Card>
           </div>
-          <p className={classes.center}>
-            <Button onClick={clearCartHandler} className={classes.clear}>
-              Clear Cart
-            </Button>
-          </p>
           <BrowseCategory title="Browse More Products" />
         </div>
       )}

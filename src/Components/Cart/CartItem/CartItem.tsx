@@ -35,7 +35,8 @@ export default function SingleCartItem({ item }: Props) {
           className={classes.itemTitle}
           onClick={() => navigate(`/shop/category/${item.category}/${item.id}`)}
         >
-          {item.title.slice(0, 30)}...
+          {item.title.slice(0, 25)}
+          {item.title.length > 25 ? "..." : ""}
         </h2>
         <p>
           {item.amount} x ${item.price.toFixed(2)} ={" "}
@@ -46,7 +47,11 @@ export default function SingleCartItem({ item }: Props) {
         <p>
           {item.rating.rate} stars ({item.rating.count} ratings)
         </p>
-        <QtyForm uid={uid ? uid : null} cartItem={{ ...item, amount: 1 }}>
+        <QtyForm
+          uid={uid ? uid : null}
+          cartItem={{ ...item, amount: 1 }}
+          className={classes.btnContainer}
+        >
           <RedBtn className={classes.delBtn} onClick={deleteFromCartHandler}>
             Delete
           </RedBtn>

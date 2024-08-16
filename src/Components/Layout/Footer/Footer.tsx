@@ -1,12 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import classes from "./Footer.module.css";
-import { useRef, useState } from "react";
+import { FormEvent, useRef, useState } from "react";
+import { setNofication } from "../../../Util/notification";
 
 export default function Footer() {
+  const navigate = useNavigate();
   const [compShown, setCompShown] = useState<boolean>(false);
   const [legalShown, setLegalShown] = useState<boolean>(false);
   const emailRef = useRef<HTMLInputElement>(null);
-  function subscribeHandler() {
+  function subscribeHandler(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
     if (
       (emailRef &&
         emailRef.current?.value.includes("@") &&
@@ -14,10 +17,10 @@ export default function Footer() {
       emailRef.current?.value.includes("yahoo.com") ||
       emailRef.current?.value.includes("outlook.com")
     ) {
-      //send email it to firebase/newsLetterEmails here
-      console.log(emailRef.current?.value.trim());
+      setNofication("success", "Subscribed to NewsLetter!");
+      navigate("/");
     } else {
-      console.log("please enter valid email");
+      setNofication("error", "Please enter a valid Email!");
     }
   }
   return (
@@ -41,11 +44,14 @@ export default function Footer() {
             <Link className={classes.link} to="/">
               Home
             </Link>
-            <Link className={classes.link} to="/shop">
+            <Link className={classes.link} to="/shop/category/all">
               Shop
             </Link>
-            <Link className={classes.link} to="/auth">
-              Login/Signup
+            <Link className={classes.link} to="/auth?mode=login">
+              Login
+            </Link>
+            <Link className={classes.link} to="/auth?mode=signup">
+              Signup
             </Link>
             <Link className={classes.link} to="/contactUs">
               Contact Us
@@ -64,30 +70,46 @@ export default function Footer() {
               legalShown ? classes.legalShown : ""
             }`}
           >
-            <Link className={classes.link} to="">
+            <Link
+              target="_blank"
+              className={classes.link}
+              to="https://codeletdigital.com/about"
+            >
               Company Policy
             </Link>
-            <Link className={classes.link} to="/contactUs">
+            <Link
+              className={classes.link}
+              target="_blank"
+              to="https://www.linkedin.com/in/hassan-bilal-dev"
+            >
               Terms & Conditions
             </Link>
-            <Link className={classes.link} to="/shop">
+            <Link
+              className={classes.link}
+              to="https://github.com/hassansheikh33/React-Ecommerce"
+              target="_blank"
+            >
               Terms of Use
             </Link>
-            <Link className={classes.link} to="/auth">
+            <Link
+              target="_blank"
+              className={classes.link}
+              to="https://github.com/hassansheikh33/React-Ecommerce"
+            >
               Copyright
             </Link>
           </div>
         </div>
         <div className={classes.newsLetter}>
           <h3 className={classes.columnHeading}>Subscribe to our newsletter</h3>
-          <form className={classes.form}>
+          <form onSubmit={subscribeHandler} className={classes.form}>
             <input
               className={classes.subEmailInput}
               type="email"
               placeholder="enter your email"
               ref={emailRef}
             />
-            <button className={classes.subBtn} onClick={subscribeHandler}>
+            <button type="submit" className={classes.subBtn}>
               Subscribe
             </button>
           </form>

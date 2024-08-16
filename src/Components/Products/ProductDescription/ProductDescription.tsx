@@ -64,7 +64,7 @@ export default function ProductDescription() {
         </div>
         <div className={classes.details}>
           <h1>{product.title}</h1>
-          <p>{product.description}</p>
+          <p className={classes.description}>{product.description}</p>
           <h3>${product.price}/-</h3>
           <p>
             {product.rating.rate} stars ({product.rating.count} ratings)

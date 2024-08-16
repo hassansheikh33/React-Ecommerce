@@ -39,7 +39,7 @@ export default function ProductItem(props: Props) {
           alt="product image"
           className={classes.image}
         />
-        <h3>{props.product.title.slice(0, 15)}...</h3>
+        <h3>{props.product.title.slice(0, 30)}...</h3>
       </div>
       <hr />
       <p className={classes.priceRating}>

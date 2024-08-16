@@ -12,6 +12,7 @@ interface Props extends PropsWithChildren {
   decreaseQty?: () => void;
   cartItem?: CartItem;
   uid?: string | null;
+  className?: string;
 }
 
 export default function QtyForm(props: Props) {
@@ -36,7 +37,11 @@ export default function QtyForm(props: Props) {
     }
   };
   return (
-    <div className={classes.qtyContainer}>
+    <div
+      className={`${classes.qtyContainer} ${
+        props.className ? props.className : ""
+      }`}
+    >
       <button
         type="button"
         className={`${classes.qtyBtn} ${classes.decreaseBtn}`}

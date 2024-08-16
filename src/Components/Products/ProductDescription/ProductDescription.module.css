@@ -68,8 +68,8 @@
   .details h1 {
     font-size: 1.7rem;
   }
-  .details p {
-    font-size: 1rem;
+  .description {
+    font-size: 1rem !important;
   }
   .moreItems h2 {
     font-size: 1.5rem;

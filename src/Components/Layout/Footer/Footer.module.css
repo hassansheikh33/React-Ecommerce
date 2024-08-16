@@ -30,6 +30,7 @@
   margin-top: 0;
   color: grey;
   margin-bottom: 0.4rem;
+  cursor: pointer;
 }
 
 .columnHeading:hover {
@@ -102,7 +103,7 @@
 @media (max-width: 575.98px) {
   .footer {
     height: auto;
-    padding-bottom: 0.5rem;
+    padding-bottom: 1rem;
   }
   .h1 {
     font-size: 1.7rem;

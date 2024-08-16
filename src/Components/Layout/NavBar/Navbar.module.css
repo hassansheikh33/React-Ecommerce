@@ -110,6 +110,9 @@
 }
 
 @media (max-width: 575.98px) {
+  .nav {
+    height: 4rem;
+  }
   .navMenu {
     display: none;
   }
