@@ -43,7 +43,7 @@ export default function AllProducts(props: Props) {
       <h1 className={classes.heading}>All Products</h1>
       <div className={classes.filter}>
         <label htmlFor="filter" className={classes.label}>
-          Filter
+          Sort by
         </label>
         <select
           name="filter"

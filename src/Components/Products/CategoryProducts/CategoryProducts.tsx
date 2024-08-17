@@ -40,7 +40,7 @@ export default function Products() {
       <h1 className={classes.heading}>{category}</h1>
       <div className={classes.filter}>
         <label htmlFor="filter" className={classes.label}>
-          Filter
+          Sort by
         </label>
         <select
           name="filter"

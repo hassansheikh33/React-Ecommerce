@@ -1,5 +1,5 @@
 import { Suspense, useEffect } from "react";
-import { Outlet, useSubmit } from "react-router-dom";
+import { Outlet, useLocation, useSubmit } from "react-router-dom";
 import classes from "./RootLayout.module.css";
 import Navbar from "../NavBar/Navbar";
 import Footer from "../Footer/Footer";
@@ -12,7 +12,7 @@ export default function RootLayout() {
   const submit = useSubmit();
 
   useEffect(() => {
-    if (!token || token === "token expired") {
+    if (!token) {
       return;
     } else {
       const duration = getDuration();
@@ -33,6 +33,12 @@ export default function RootLayout() {
       }
     }
   }, [token, submit, setNofication]);
+
+  const pathname = useLocation().pathname;
+
+  useEffect(() => {
+    window.scroll({ top: 0, behavior: "smooth" });
+  }, [pathname]);
 
   return (
     <>
