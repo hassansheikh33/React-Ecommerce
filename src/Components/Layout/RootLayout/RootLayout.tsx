@@ -4,7 +4,7 @@ import classes from "./RootLayout.module.css";
 import Navbar from "../NavBar/Navbar";
 import Footer from "../Footer/Footer";
 import Notification from "../../UI/Notification/Notification";
-import { getDuration, getToken } from "../../../Util/token";
+import { getDuration, getToken, userExists } from "../../../Util/token";
 import { setNofication } from "../../../Util/notification";
 
 export default function RootLayout() {
@@ -34,10 +34,25 @@ export default function RootLayout() {
     }
   }, [token, submit, setNofication]);
 
+  useEffect(() => {
+    const validate = async () => {
+      if (token) {
+        const response = await userExists(token);
+        if (!response) {
+          setNofication("error", "Unauthenticated User");
+          submit(null, { action: "/logout", method: "POST" });
+        }
+      }
+    };
+    validate();
+  }, [token]);
+
   const pathname = useLocation().pathname;
 
   useEffect(() => {
-    window.scroll({ top: 0, behavior: "smooth" });
+    if (!pathname.includes("order")) {
+      window.scroll({ top: 0, behavior: "smooth" });
+    }
   }, [pathname]);
 
   return (

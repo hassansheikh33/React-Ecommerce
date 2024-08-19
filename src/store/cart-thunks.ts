@@ -10,7 +10,6 @@ import { fs } from "../Config/firebaseConfig";
 import { Cart, CartItem, NotificationType, Order, UserData } from "../types";
 import { cartActions } from "./cart-slice";
 import { AppDispatch, GetState } from "./redux-store";
-import { uiActions } from "./ui-slice";
 import { setNofication } from "../Util/notification";
 
 export const fetchCart = (uid: string) => {
@@ -43,51 +42,89 @@ export const listenToChanges = (uid: string) => {
 
 export const updateCart = (uid: string, cart: Cart) => {
   return async () => {
-    const userDocRef = doc(fs, "users", uid);
-    updateDoc(userDocRef, { cart });
+    try {
+      const userDocRef = doc(fs, "users", uid);
+      await updateDoc(userDocRef, { cart });
+    } catch (err) {
+      setNofication("error", "Could not update cart, please try again later!");
+    }
   };
 };
 
 export const addToCart = (uid: string, item: CartItem) => {
   return async (dispatch: AppDispatch, getState: GetState) => {
-    dispatch(cartActions.addItem(item));
-    const cart = getState().cart;
-    await dispatch(updateCart(uid, cart));
-    setNofication("success", "item added to cart!");
+    try {
+      dispatch(cartActions.addItem(item));
+      const cart = getState().cart;
+      await dispatch(updateCart(uid, cart));
+      setNofication("success", "Item added to Cart");
+    } catch (err) {
+      setNofication(
+        "error",
+        "Could not add item to cart, please try again later!"
+      );
+      console.error(err);
+    }
   };
 };
 
 export const removeOneFromCart = (uid: string, item: CartItem) => {
   return async (dispatch: AppDispatch, getState: GetState) => {
-    dispatch(cartActions.removeItem(item));
-    const cart = getState().cart;
-    await dispatch(updateCart(uid, cart));
-    setNofication("error", "item removed from cart!");
+    try {
+      dispatch(cartActions.removeItem(item));
+      const cart = getState().cart;
+      await dispatch(updateCart(uid, cart));
+      setNofication("error", "item removed from cart!");
+    } catch (err) {
+      setNofication(
+        "error",
+        "Could not remove item from cart, please try again later!"
+      );
+      console.error(err);
+    }
   };
 };
 
 export const removeItemFromCart = (uid: string, item: CartItem) => {
   return async (dispatch: AppDispatch, getState: GetState) => {
-    dispatch(cartActions.deleteOneItem(item));
-    const cart = getState().cart;
-    await dispatch(updateCart(uid, cart));
-    setTimeout(() => dispatch(uiActions.removeNotification()), 1500);
-    setNofication("error", "Item deleted from cart!");
+    try {
+      dispatch(cartActions.deleteOneItem(item));
+      const cart = getState().cart;
+      await dispatch(updateCart(uid, cart));
+      setNofication("error", "Item deleted from cart!");
+    } catch (err) {
+      setNofication(
+        "error",
+        "Could not delete item from cart, please try again later!"
+      );
+      console.error(err);
+    }
   };
 };
 
 export const removeAll = (uid: string, noti: NotificationType) => {
   return async (dispatch: AppDispatch, getState: GetState) => {
-    dispatch(cartActions.deleteAll());
-    const cart = getState().cart;
-    await dispatch(updateCart(uid, cart));
-    setNofication(noti.type, noti.title);
+    try {
+      dispatch(cartActions.deleteAll());
+      const cart = getState().cart;
+      await dispatch(updateCart(uid, cart));
+      setNofication(noti.type, noti.title);
+    } catch (err) {
+      setNofication("error", "Could not empty cart, please try again later!");
+    }
   };
 };
 
 export const order = (order: Order) => {
   return async () => {
-    const collectionRef = collection(fs, "orders");
-    await addDoc(collectionRef, order);
+    try {
+      const collectionRef = collection(fs, "orders");
+      await addDoc(collectionRef, order);
+    } catch (err) {
+      setNofication(
+        "error",
+        "Could not place an order, please try again later!"
+      );
+    }
   };
 };

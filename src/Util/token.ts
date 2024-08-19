@@ -1,3 +1,6 @@
+import { doc, getDoc } from "firebase/firestore";
+import { fs } from "../Config/firebaseConfig";
+
 export const getDuration = () => {
   const expirationString = localStorage.getItem("expiration");
   if (expirationString) {
@@ -20,4 +23,13 @@ export const getToken = () => {
     return token;
   }
   return null;
+};
+
+export const userExists = async (uid: string) => {
+  const userDocRef = doc(fs, "users", uid);
+  const userDoc = await getDoc(userDocRef);
+  if (userDoc.exists()) {
+    return true;
+  }
+  return false;
 };
