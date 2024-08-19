@@ -13,9 +13,15 @@ import {
 import { auth, fs } from "../../Config/firebaseConfig";
 import { doc, setDoc } from "firebase/firestore";
 import { setNofication } from "../../Util/notification";
+import { AuthFormError } from "../../types";
 
 export default function Authentication() {
   const loading = useSelector((state: RootState) => state.ui.loading);
+  const [AuthError, setAuthError] = useState<AuthFormError>({
+    name: null,
+    email: null,
+    password: null,
+  });
   const dispatch = useDispatch<AppDispatch>();
   const [email, setEmail] = useState<string>("");
   const [name, setName] = useState<string>("");
@@ -60,12 +66,30 @@ export default function Authentication() {
           !email.endsWith(".com")
         ) {
           setNofication("error", "Please enter a valid Email");
+          setAuthError((prevState) => ({
+            ...prevState,
+            email: "Please enter a valid Email. eg: abc@gmail.com",
+          }));
+        } else {
+          setAuthError((prevState) => ({
+            ...prevState,
+            email: null,
+          }));
         }
         if (password.length < 8) {
           setNofication(
             "error",
             "Please enter a valid password (min 8 characters)"
           );
+          setAuthError((prevState) => ({
+            ...prevState,
+            password: "Please enter a valid password. (must include 8 digits)",
+          }));
+        } else {
+          setAuthError((prevState) => ({
+            ...prevState,
+            password: null,
+          }));
         }
       } else {
         try {
@@ -105,15 +129,42 @@ export default function Authentication() {
           !email.endsWith(".com")
         ) {
           setNofication("error", "Please enter a valid Email");
+          setAuthError((prevState) => ({
+            ...prevState,
+            email: "Please enter a valid Email. eg: abc@gmail.com",
+          }));
+        } else {
+          setAuthError((prevState) => ({
+            ...prevState,
+            email: null,
+          }));
         }
         if (password.length < 8) {
           setNofication(
             "error",
             "Please enter a valid password (min 8 characters)"
           );
+          setAuthError((prevState) => ({
+            ...prevState,
+            password: "Please enter a valid password. (min 8 characters)",
+          }));
+        } else {
+          setAuthError((prevState) => ({
+            ...prevState,
+            password: null,
+          }));
         }
         if (name === "" || !name.includes(" ")) {
           setNofication("error", "Please enter your valid full name");
+          setAuthError((prevState) => ({
+            ...prevState,
+            name: "Please enter your valid full name.",
+          }));
+        } else {
+          setAuthError((prevState) => ({
+            ...prevState,
+            name: null,
+          }));
         }
       } else {
         try {
@@ -185,6 +236,9 @@ export default function Authentication() {
                 id="name"
                 onChange={nameChange}
               />
+              {AuthError.name && (
+                <p className={classes.red}>{AuthError.name}</p>
+              )}
             </fieldset>
           )}
           <fieldset className={classes.fieldset}>
@@ -199,19 +253,25 @@ export default function Authentication() {
               id="Email"
               onChange={emailChange}
             />
+            {AuthError.email && (
+              <p className={classes.red}>{AuthError.email}</p>
+            )}
           </fieldset>
           <fieldset className={classes.fieldset}>
             <label className={classes.label} htmlFor="password">
-              Password* (min 8 chatacters)
+              Password*
             </label>
             <input
               className={classes.input}
               value={password}
-              placeholder="Enter password"
+              placeholder="Enter password (min 8 chatacters)"
               onChange={passwordChange}
               type="password"
               id="password"
             />
+            {AuthError.password && (
+              <p className={classes.red}>{AuthError.password}</p>
+            )}
           </fieldset>
           <Button
             type="submit"

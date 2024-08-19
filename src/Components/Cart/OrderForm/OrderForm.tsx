@@ -2,7 +2,7 @@ import classes from "./OrderForm.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../store/redux-store";
 import { ChangeEvent, FormEvent, useRef, useState } from "react";
-import { FormError } from "../../../types";
+import { OrderFormError } from "../../../types";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { setNofication } from "../../../Util/notification";
 import { getToken } from "../../../Util/token";
@@ -22,7 +22,7 @@ export default function OrderForm() {
   const numberRef = useRef<HTMLInputElement>(null);
   const [address, setAddress] = useState<string>("");
   const [method, setMethod] = useState<"cash" | "card">("cash");
-  const [error, setError] = useState<FormError>({
+  const [error, setError] = useState<OrderFormError>({
     name: null,
     email: null,
     address: null,

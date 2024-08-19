@@ -1,46 +1,76 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Button from "../UI/Button/Button";
 import SocialLinks from "../UI/SocialLinks/SocialLinks";
 import classes from "./ContactUs.module.css";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../store/redux-store";
-import { uiActions } from "../../store/ui-slice";
 import { useNavigate } from "react-router-dom";
+import { ContactFormError } from "../../types";
+import { setNofication } from "../../Util/notification";
 
 export default function ContactUs() {
   const nameInputRef = useRef<HTMLInputElement>(null);
   const emailInputRef = useRef<HTMLInputElement>(null);
   const inquiryRef = useRef<HTMLTextAreaElement>(null);
+  const [contactError, setContactError] = useState<ContactFormError>({
+    name: null,
+    email: null,
+    query: null,
+  });
 
   const navigate = useNavigate();
-  const dispatch = useDispatch<AppDispatch>();
 
   const submisstionHandler = () => {
     if (
       nameInputRef.current?.value !== "" &&
+      nameInputRef.current?.value.includes(" ") &&
       emailInputRef.current?.value !== "" &&
       emailInputRef.current?.value.includes("@") &&
       emailInputRef.current?.value.endsWith(".com") &&
-      inquiryRef.current?.value !== ""
+      inquiryRef.current?.value !== "" &&
+      inquiryRef.current?.value.length >= 15
     ) {
-      dispatch(
-        uiActions.addNotification({
-          title: "Inquiry sent successfully! Our team will contact you soon.",
-          type: "success",
-        })
-      );
-      setTimeout(() => dispatch(uiActions.removeNotification()), 1500);
+      setNofication("success", "Query sent, Our team will contact you soon!");
       navigate("/", { replace: true });
     } else {
-      dispatch(
-        uiActions.addNotification({
-          title: "Please enter correct values!",
-          type: "error",
-        })
-      );
-      setTimeout(() => {
-        dispatch(uiActions.removeNotification());
-      }, 1500);
+      if (
+        nameInputRef.current?.value === "" ||
+        !nameInputRef.current?.value.includes(" ")
+      ) {
+        setContactError((prevState) => ({
+          ...prevState,
+          name: "Please enter your valid full name. eg: John Doe",
+        }));
+      } else {
+        setContactError((prevState) => ({
+          ...prevState,
+          name: null,
+        }));
+      }
+      if (
+        emailInputRef.current?.value === "" ||
+        !emailInputRef.current?.value.includes("@") ||
+        !emailInputRef.current?.value.endsWith(".com")
+      ) {
+        setContactError((prevState) => ({
+          ...prevState,
+          email: "Plese enter a valid email. eg: abc@gmail.com",
+        }));
+      } else {
+        setContactError((prevState) => ({
+          ...prevState,
+          email: null,
+        }));
+      }
+      if (
+        inquiryRef.current?.value !== "" ||
+        inquiryRef.current.value.length < 15
+      ) {
+        setContactError((prevState) => ({
+          ...prevState,
+          query: "Please elaborate your query descriptively",
+        }));
+      } else {
+        setContactError((prevState) => ({ ...prevState, query: null }));
+      }
     }
   };
   return (
@@ -131,6 +161,9 @@ export default function ContactUs() {
                 placeholder="eg: John Doe"
                 className={classes.input}
               />
+              {contactError.name && (
+                <p className={classes.red}>{contactError.name}</p>
+              )}
             </div>
             <div className={classes.field}>
               <label htmlFor="email" className={classes.label}>
@@ -144,6 +177,9 @@ export default function ContactUs() {
                 placeholder="eg: abc@gmail.com"
                 className={classes.input}
               />
+              {contactError.email && (
+                <p className={classes.red}>{contactError.email}</p>
+              )}
             </div>
             <div className={classes.field}>
               <label htmlFor="inquiry" className={classes.label}>
@@ -156,6 +192,9 @@ export default function ContactUs() {
                 id="inquiry"
                 rows={8}
               ></textarea>
+              {contactError.query && (
+                <p className={classes.red}>{contactError.query}</p>
+              )}
             </div>
             <div className={classes.field}>
               <Button className={classes.inquiry} onClick={submisstionHandler}>

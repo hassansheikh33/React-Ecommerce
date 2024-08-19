@@ -37,7 +37,7 @@ export interface UserData {
   };
 }
 
-export interface FormError {
+export interface OrderFormError {
   name: string | null;
   email: string | null;
   number: string | null;
@@ -49,4 +49,16 @@ export interface Order extends UserData {
   address: string;
   number: number;
   payment_method: string;
+}
+
+export interface AuthFormError {
+  name: string | null;
+  email: string | null;
+  password: string | null;
+}
+
+export interface ContactFormError {
+  name: string | null;
+  email: string | null;
+  query: string | null;
 }

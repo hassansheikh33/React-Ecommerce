@@ -17,6 +17,7 @@
 
 .red {
   color: red;
+  margin: 0;
 }
 
 .blue {
@@ -73,6 +74,10 @@
   padding-right: 0;
   font-size: 1rem;
   border-radius: 5px;
+}
+
+.textarea {
+  max-height: 20rem;
 }
 
 .inquiry {
