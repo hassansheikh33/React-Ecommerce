@@ -26,6 +26,7 @@ export default function ContactUs() {
       emailInputRef.current?.value.includes("@") &&
       emailInputRef.current?.value.endsWith(".com") &&
       inquiryRef.current?.value !== "" &&
+      inquiryRef.current?.value.length &&
       inquiryRef.current?.value.length >= 15
     ) {
       setNofication("success", "Query sent, Our team will contact you soon!");
