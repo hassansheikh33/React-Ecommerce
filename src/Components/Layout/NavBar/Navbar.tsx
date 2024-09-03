@@ -3,15 +3,19 @@ import classes from "./Navbar.module.css";
 import person from "../../../assets/person.svg";
 import cart from "../../../assets/cart.svg";
 import { getToken } from "../../../Util/token";
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../../store/redux-store";
+import { uiActions } from "../../../store/ui-slice";
 
 export default function Navbar() {
-  const [show, setShow] = useState<boolean>(false);
-  const showMenu = () => setShow(true);
   const token = getToken();
 
+  const show = useSelector((state: RootState) => state.ui.navShown);
+  const dispatch = useDispatch<AppDispatch>();
+
+  const showMenu = () => dispatch(uiActions.toggleNav(true));
   const closeNavMenu = () => {
-    setShow(false);
+    dispatch(uiActions.toggleNav(false));
   };
   return (
     <nav className={classes.nav}>

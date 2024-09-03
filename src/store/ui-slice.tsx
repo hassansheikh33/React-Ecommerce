@@ -4,13 +4,13 @@ import { getToken } from "../Util/token";
 
 let initialState: {
   notifications: NotificationType[];
-  toggleNav: boolean;
+  navShown: boolean;
   loading: boolean;
   token: string | null;
   orderFormShown: boolean;
 } = {
   notifications: [],
-  toggleNav: false,
+  navShown: false,
   loading: false,
   token: getToken(),
   orderFormShown: false,
@@ -20,8 +20,8 @@ const uiSlice = createSlice({
   name: "ui",
   initialState,
   reducers: {
-    toggleNav(state) {
-      state.toggleNav = !state.toggleNav;
+    toggleNav(state, action: PayloadAction<boolean>) {
+      state.navShown = action.payload;
     },
     addNotification(state, action: PayloadAction<NotificationType>) {
       state.notifications.push({ ...action.payload });

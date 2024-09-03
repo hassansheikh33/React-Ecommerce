@@ -1,17 +1,18 @@
 import classes from "./OrderForm.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../store/redux-store";
-import { ChangeEvent, FormEvent, useRef, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
 import { OrderFormError } from "../../../types";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { setNofication } from "../../../Util/notification";
 import { getToken } from "../../../Util/token";
-import { order, removeAll } from "../../../store/cart-thunks";
+import { order, removeAll } from "../../Products/cart-thunks";
 import Button from "../../UI/Button/Button";
 import Card from "../../UI/Card/Card";
 import { uiActions } from "../../../store/ui-slice";
 
 export default function OrderForm() {
+  const orderFormRef = useRef<null | HTMLFormElement>(null);
   const cart = useSelector((state: RootState) => state.cart);
   const uid = getToken();
   const dispatch = useDispatch<AppDispatch>();
@@ -142,9 +143,19 @@ export default function OrderForm() {
     }
   };
 
+  useEffect(() => {
+    orderFormRef.current?.scrollIntoView({
+      behavior: "smooth",
+    });
+  }, []);
+
   return (
     <Card className={classes.orderFormCard}>
-      <form onSubmit={orderHandler} className={classes.orderForm}>
+      <form
+        onSubmit={orderHandler}
+        className={classes.orderForm}
+        ref={orderFormRef}
+      >
         <fieldset className={classes.fieldset}>
           <label htmlFor="name" className={classes.label}>
             Your Name

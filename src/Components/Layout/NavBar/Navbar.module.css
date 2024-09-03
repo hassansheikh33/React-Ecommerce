@@ -99,6 +99,7 @@
 }
 
 .crossBtn {
+  display: none;
   text-align: center;
   width: 35px;
   cursor: pointer;
@@ -133,5 +134,8 @@
   .auth,
   .cart {
     margin-right: 1rem;
+  }
+  .crossBtn {
+    display: inline-block;
   }
 }

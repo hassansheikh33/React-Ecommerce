@@ -4,7 +4,7 @@ import Card from "../../UI/Card/Card";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../store/redux-store";
 import Button from "../../UI/Button/Button";
-import { addToCart } from "../../../store/cart-thunks";
+import { addToCart } from "../cart-thunks";
 import { getToken } from "../../../Util/token";
 import { setNofication } from "../../../Util/notification";
 

@@ -6,9 +6,21 @@ import { fs } from "../Config/firebaseConfig";
 import { getToken } from "../Util/token";
 import store from "../store/redux-store";
 import { uiActions } from "../store/ui-slice";
+import { Helmet } from "react-helmet";
 
 export default function Order() {
-  return <OrderForm />;
+  return (
+    <>
+      <Helmet>
+        <title>Order</title>
+        <meta
+          name="description"
+          content="Provide your details and place an order! Our team will contact you for confirming your order"
+        />
+      </Helmet>
+      <OrderForm />
+    </>
+  );
 }
 
 export const orderLoader: LoaderFunction = async () => {

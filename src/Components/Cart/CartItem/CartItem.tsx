@@ -6,7 +6,7 @@ import classes from "./CartItem.module.css";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../store/redux-store";
 import RedBtn from "../../UI/Button/Button";
-import { removeItemFromCart } from "../../../store/cart-thunks";
+import { removeItemFromCart } from "../../Products/cart-thunks";
 import { getToken } from "../../../Util/token";
 
 interface Props {

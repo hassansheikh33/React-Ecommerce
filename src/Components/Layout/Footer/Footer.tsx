@@ -26,7 +26,14 @@ export default function Footer() {
   return (
     <footer className={classes.footer}>
       <h1 className={classes.h1}>
-        <Link to="/" className={classes.link}>
+        <Link
+          to="/"
+          onClick={() => {
+            if (window.location.pathname === "/React-Ecommerce")
+              window.scroll({ top: 0, behavior: "smooth" });
+          }}
+          className={classes.link}
+        >
           React<span className={classes.red}>Commerce</span>
         </Link>
       </h1>

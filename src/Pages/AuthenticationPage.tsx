@@ -1,9 +1,28 @@
-import { LoaderFunction, Outlet, redirect } from "react-router-dom";
+import {
+  LoaderFunction,
+  Outlet,
+  redirect,
+  useSearchParams,
+} from "react-router-dom";
 import Authentication from "../Components/Authentication/Authentication";
 import { getToken } from "../Util/token";
+import { Helmet } from "react-helmet";
 
 export default function AuthenticationPage() {
-  return <Authentication />;
+  const [searchParams] = useSearchParams();
+  const mode = searchParams.get("mode");
+  return (
+    <>
+      <Helmet>
+        <title>{mode}</title>
+        <meta
+          name="description"
+          content={`${mode} to add your favourite products to cart and place an order!`}
+        />
+      </Helmet>
+      <Authentication />;
+    </>
+  );
 }
 
 export const authLoader: LoaderFunction = () => {

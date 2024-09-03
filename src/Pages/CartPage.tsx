@@ -3,9 +3,18 @@ import Cart from "../Components/Cart/Cart";
 import { getToken } from "../Util/token";
 import store from "../store/redux-store";
 import { uiActions } from "../store/ui-slice";
+import { Helmet } from "react-helmet";
 
 export default function CartPage() {
-  return <Cart />;
+  return (
+    <>
+      <Helmet>
+        <title>Cart</title>
+        <meta name="description" content="View your cart, make an order!" />
+      </Helmet>
+      <Cart />;
+    </>
+  );
 }
 
 export const cartLoader: LoaderFunction = async () => {

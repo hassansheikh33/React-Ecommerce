@@ -1,8 +1,31 @@
-import { LoaderFunction } from "react-router-dom";
+import {
+  LoaderFunction,
+  Params,
+  useLoaderData,
+  useParams,
+} from "react-router-dom";
 import ProductDescription from "../Components/Products/ProductDescription/ProductDescription";
+import { Helmet } from "react-helmet";
+import { Product } from "../types";
 
 export default function ProductDescriptionPage() {
-  return <ProductDescription />;
+  const params = useParams<Params>();
+  const productId = Number(params.productId);
+  const data = useLoaderData() as Product[];
+  const products = data.filter((item: Product) => item.id === productId);
+  const product = products[0];
+  return (
+    <>
+      <Helmet>
+        <title>{product.title}</title>
+        <meta
+          name="description"
+          content={`${product.title} : ${product.description} Buy Yours Now!`}
+        />
+      </Helmet>
+      <ProductDescription />;
+    </>
+  );
 }
 
 export const singleProductLoader: LoaderFunction = async ({ params }) => {

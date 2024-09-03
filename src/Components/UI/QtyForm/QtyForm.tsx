@@ -3,7 +3,7 @@ import classes from "./QtyForm.module.css";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../store/redux-store";
 import { CartItem } from "../../../types";
-import { addToCart, removeOneFromCart } from "../../../store/cart-thunks";
+import { addToCart, removeOneFromCart } from "../../Products/cart-thunks";
 
 interface Props extends PropsWithChildren {
   qty?: number;

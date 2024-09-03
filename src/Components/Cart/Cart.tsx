@@ -5,7 +5,7 @@ import Card from "../UI/Card/Card";
 import SingleCartItem from "./CartItem/CartItem";
 import Button from "../UI/Button/Button";
 import BrowseCategory from "../BrowseCategory/BrowseCategory";
-import { fetchCart, removeAll } from "../../store/cart-thunks";
+import { fetchCart, removeAll } from "../Products/cart-thunks";
 import { getToken } from "../../Util/token";
 import { useEffect } from "react";
 import { uiActions } from "../../store/ui-slice";
@@ -18,6 +18,8 @@ export default function Cart() {
   const NumOfItems = useSelector(
     (state: RootState) => state.cart.totalNumItems
   );
+
+  const loading = useSelector((state: RootState) => state.ui.loading);
 
   const dispatch = useDispatch<AppDispatch>();
 
@@ -45,6 +47,12 @@ export default function Cart() {
 
   return (
     <>
+      {loading && (
+        <div className={classes.loadingDiv}>
+          <h2>Updating Cart</h2>
+          <div className={classes.spinner}></div>
+        </div>
+      )}
       {cartItems.length > 0 && (
         <div className={classes.container}>
           <h1 className={classes.center}>
@@ -84,7 +92,7 @@ export default function Cart() {
           <BrowseCategory title="Browse More Products" />
         </div>
       )}
-      {cartItems.length === 0 && (
+      {!loading && cartItems.length === 0 && (
         <div className={`${classes.container} ${classes.empty}`}>
           <div className={classes.center}>
             <h1>

@@ -52,6 +52,22 @@
   background-color: red;
 }
 
+.loadingDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner {
+  margin-left: 1rem;
+  border-radius: 50%;
+  height: 1rem;
+  width: 1rem;
+  border: 4px solid grey;
+  border-top: 4px solid rgb(60, 137, 238);
+  animation: loading 1s linear infinite;
+}
+
 @media (max-width: 575.98px) {
   .container h1 {
     font-size: 2.2rem;

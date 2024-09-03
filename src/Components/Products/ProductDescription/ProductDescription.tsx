@@ -12,7 +12,7 @@ import { useState } from "react";
 import QtyForm from "../../UI/QtyForm/QtyForm";
 import Button from "../../UI/Button/Button";
 import ProductItem from "../ProductItem/ProductItem";
-import { addToCart } from "../../../store/cart-thunks";
+import { addToCart } from "../cart-thunks";
 import { getToken } from "../../../Util/token";
 import { setNofication } from "../../../Util/notification";
 

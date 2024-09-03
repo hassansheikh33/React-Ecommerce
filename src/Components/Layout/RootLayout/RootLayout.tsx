@@ -6,6 +6,9 @@ import Footer from "../Footer/Footer";
 import Notification from "../../UI/Notification/Notification";
 import { getDuration, getToken, userExists } from "../../../Util/token";
 import { setNofication } from "../../../Util/notification";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../../store/redux-store";
+import { uiActions } from "../../../store/ui-slice";
 
 export default function RootLayout() {
   const token = getToken();
@@ -49,6 +52,14 @@ export default function RootLayout() {
 
   const pathname = useLocation().pathname;
 
+  const show = useSelector((state: RootState) => state.ui.navShown);
+  const dispatch = useDispatch();
+  const closeNav = () => {
+    if (show) {
+      dispatch(uiActions.toggleNav(false));
+    }
+  };
+
   useEffect(() => {
     if (!pathname.includes("order")) {
       window.scroll({ top: 0, behavior: "smooth" });
@@ -60,20 +71,22 @@ export default function RootLayout() {
       <header>
         <Navbar />
       </header>
-      <main className={classes.content}>
-        <Suspense
-          fallback={
-            <div className={classes.FallbackContainer}>
-              <h1>Loading.... </h1>
-              <div className={classes.spinner}></div>
-            </div>
-          }
-        >
-          <Notification />
-          <Outlet />
-        </Suspense>
-      </main>
-      <Footer />
+      <div onClick={closeNav}>
+        <main className={classes.content}>
+          <Suspense
+            fallback={
+              <div className={classes.FallbackContainer}>
+                <h1>Loading.... </h1>
+                <div className={classes.spinner}></div>
+              </div>
+            }
+          >
+            <Notification />
+            <Outlet />
+          </Suspense>
+        </main>
+        <Footer />
+      </div>
     </>
   );
 }
