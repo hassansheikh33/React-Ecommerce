@@ -1,4 +1,4 @@
-import classes from "../../Authentication/Authentication.module.css";
+import classes from "./Login.module.css";
 import Button from "../../UI/Button/Button";
 import { AdminLoginError } from "../../../types";
 import { ChangeEvent, FormEvent, useState } from "react";
@@ -63,7 +63,11 @@ export default function Login() {
       try {
         dispatch(uiActions.setLoading(true));
         const response = await dispatch(loginAdmin({ email, password }));
+        dispatch(uiActions.setMode("admin"));
         localStorage.setItem("admin", response);
+        const expirationDate = new Date();
+        expirationDate.setHours(expirationDate.getHours() + 1);
+        localStorage.setItem("expiration", expirationDate.toISOString());
         setNofication("success", `Welcome ${response}`);
         setEmail("");
         setPassword("");
@@ -83,7 +87,7 @@ export default function Login() {
     setPassword(e.target.value);
   };
   return (
-    <div style={{ width: "50%", margin: "5rem auto 5rem auto" }}>
+    <div className={classes.container}>
       <h1 className={classes.heading}>Admin Login</h1>
       <form onSubmit={submitHandler}>
         <fieldset className={classes.fieldset}>

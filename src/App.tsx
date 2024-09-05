@@ -13,7 +13,8 @@ import { singleProductLoader } from "./Pages/ProductDescriptionPage.tsx";
 import { cartLoader } from "./Pages/CartPage";
 import { authLoader } from "./Pages/AuthenticationPage";
 import { orderLoader } from "./Pages/Order.tsx";
-import { adminLoginLoader } from "./Pages/AdminLoginPage.tsx";
+import { adminLoader, adminLoginLoader } from "./Pages/AdminLoginPage.tsx";
+import { usersLoader } from "./Pages/AdminUsersPage.tsx";
 
 const router = createBrowserRouter(
   [
@@ -76,17 +77,37 @@ const router = createBrowserRouter(
           action: logoutAction,
         },
         {
-          path: "/admin",
-          loader: () => redirect("/admin/login"),
-        },
-        {
-          path: "/admin/login",
+          path: "/adminLogin",
           loader: adminLoginLoader,
           Component: lazy(() => import("./Pages/AdminLoginPage.tsx")),
         },
         {
-          path: "/admin/dashboard",
-          Component: lazy(() => import("./Pages/AdminDashboardPage.tsx")),
+          path: "/admin",
+          loader: adminLoader,
+          children: [
+            {
+              path: "/admin/dashboard",
+              Component: lazy(() => import("./Pages/AdminDashboardPage.tsx")),
+            },
+            {
+              path: "/admin/users",
+              loader: usersLoader,
+              Component: lazy(() => import("./Pages/AdminUsersPage.tsx")),
+            },
+            {
+              path: "/admin/products",
+              loader: AllProductsLoader,
+              Component: lazy(() => import("./Pages//AdminProductsPage.tsx")),
+              children: [
+                {
+                  path: "/admin/products/new",
+                  Component: lazy(
+                    () => import("./Pages/AdminNewProductPage.tsx")
+                  ),
+                },
+              ],
+            },
+          ],
         },
       ],
     },
