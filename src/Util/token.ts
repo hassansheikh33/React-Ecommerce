@@ -33,3 +33,11 @@ export const userExists = async (uid: string) => {
   }
   return false;
 };
+
+export const getAdminToken = () => {
+  const adminToken = localStorage.getItem("admin");
+  if (adminToken) {
+    return adminToken;
+  }
+  return "user";
+};

@@ -105,6 +105,9 @@ export default function Footer() {
             >
               Copyright
             </Link>
+            <Link className={classes.link} to="/admin/login">
+              Admin Dashboard
+            </Link>
           </div>
         </div>
         <div className={classes.newsLetter}>

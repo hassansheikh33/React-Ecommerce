@@ -62,3 +62,13 @@ export interface ContactFormError {
   email: string | null;
   query: string | null;
 }
+
+export interface AdminLoginError {
+  email: string | null;
+  password: string | null;
+}
+
+export interface AdminCredentials {
+  email: string;
+  password: string;
+}

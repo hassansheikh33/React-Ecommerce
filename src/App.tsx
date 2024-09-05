@@ -13,6 +13,7 @@ import { singleProductLoader } from "./Pages/ProductDescriptionPage.tsx";
 import { cartLoader } from "./Pages/CartPage";
 import { authLoader } from "./Pages/AuthenticationPage";
 import { orderLoader } from "./Pages/Order.tsx";
+import { adminLoginLoader } from "./Pages/AdminLoginPage.tsx";
 
 const router = createBrowserRouter(
   [
@@ -73,6 +74,19 @@ const router = createBrowserRouter(
           path: "/logout",
           loader: logoutLoader,
           action: logoutAction,
+        },
+        {
+          path: "/admin",
+          loader: () => redirect("/admin/login"),
+        },
+        {
+          path: "/admin/login",
+          loader: adminLoginLoader,
+          Component: lazy(() => import("./Pages/AdminLoginPage.tsx")),
+        },
+        {
+          path: "/admin/dashboard",
+          Component: lazy(() => import("./Pages/AdminDashboardPage.tsx")),
         },
       ],
     },

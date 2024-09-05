@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { NotificationType } from "../types";
-import { getToken } from "../Util/token";
+import { getAdminToken, getToken } from "../Util/token";
 
 let initialState: {
   notifications: NotificationType[];
@@ -8,12 +8,14 @@ let initialState: {
   loading: boolean;
   token: string | null;
   orderFormShown: boolean;
+  mode: string;
 } = {
   notifications: [],
   navShown: false,
   loading: false,
   token: getToken(),
   orderFormShown: false,
+  mode: getAdminToken(),
 };
 
 const uiSlice = createSlice({
@@ -42,6 +44,9 @@ const uiSlice = createSlice({
     },
     setOrderFormShown(state, action: PayloadAction<boolean>) {
       state.orderFormShown = action.payload;
+    },
+    setMode(state, action: PayloadAction<"user" | "admin">) {
+      state.mode = action.payload;
     },
   },
 });
