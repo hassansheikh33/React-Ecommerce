@@ -18,14 +18,20 @@ export default function ProductItem(props: Props) {
   const dispatch = useDispatch<AppDispatch>();
   const addtoCartHandler = () => {
     if (uid) {
-      dispatch(addToCart(uid, { ...props.product, amount: 1 }));
+      dispatch(
+        addToCart(uid, {
+          id: props.product.id,
+          price: props.product.price,
+          title: props.product.title,
+          amount: 1,
+        })
+      );
     } else {
       setNofication("error", "Please Login to add items to Cart!");
     }
   };
 
   const goToProductPage = () => {
-    setNofication("progress", "Redirecting to product description");
     props.onClick();
   };
   return (

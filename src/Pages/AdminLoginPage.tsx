@@ -22,7 +22,7 @@ export const adminLoginLoader: LoaderFunction = async () => {
 
 export const adminLoader = () => {
   const adminToken = getAdminToken();
-  if (adminToken && adminToken !== "user") {
+  if (adminToken && adminToken !== "user" && adminToken !== "token expired") {
     return <Outlet />;
   }
   setNofication("error", "Unauthenticated");

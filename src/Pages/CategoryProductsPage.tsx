@@ -1,50 +1,43 @@
-import { LoaderFunction, useLoaderData } from "react-router-dom";
+import { Params, useParams, useRouteLoaderData } from "react-router-dom";
 import CategoryProducts from "../Components/Products/CategoryProducts/CategoryProducts";
 import { Helmet } from "react-helmet";
 import { Product } from "../types";
 
 export default function ProductsPage() {
-  const data = useLoaderData() as {
-    data: Product[];
-    category: string;
-  };
+  let data = useRouteLoaderData("root") as Product[];
+  const params = useParams<Params>();
+  const category = params.categoryName;
+  const products = data.filter((item) => item.category === category);
   return (
     <>
       <Helmet>
-        <title>Shop - {data.category}</title>
+        <title>Shop - {category}</title>
         <meta
           name="description"
-          content={`20% off! Browse all our ${data.category} products at awesome prices! Buy yours now!`}
+          content={`20% off! Browse all our ${category} products at awesome prices! Buy yours now!`}
         />
       </Helmet>
-      <CategoryProducts />;
+      <CategoryProducts data={products} category={category} />;
     </>
   );
 }
 
-export const CategoryProductsLoader: LoaderFunction = async ({ params }) => {
-  const category = params.categoryName;
-  let endpoint = "";
-  if (
-    category === "jewelery" ||
-    category === "men's clothing" ||
-    category === "women's clothing" ||
-    category === "electronics"
-  ) {
-    endpoint = `/category/${category}`;
-  } else {
-    throw new Error("unrecognized category");
-  }
-  try {
-    const response = await fetch(
-      `https://fakestoreapi.com/products/${endpoint}`
-    );
-    if (!response.ok) {
-      throw new Error(`Error ${response.status}: ${response.statusText}`);
-    }
-    const data = await response.json();
-    return { data, category };
-  } catch (err) {
-    console.log(err);
-  }
-};
+// export const CategoryProductsLoader: LoaderFunction = async ({ params }) => {
+//   const category = params.categoryName;
+//   if (
+//     !(
+//       category === "electronics" ||
+//       category === "men's clothing" ||
+//       category === "women's clothing" ||
+//       category === "jewelery"
+//     )
+//   ) {
+//     throw new Error("invalid Category");
+//   }
+//   try {
+//     const data = (await AllProductsLoader()) as Product[];
+//     return { data: categoryProducts, category };
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };

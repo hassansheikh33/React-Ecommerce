@@ -1,9 +1,4 @@
-import {
-  Params,
-  useLoaderData,
-  useNavigate,
-  useParams,
-} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import classes from "./ProductDescription.module.css";
 import { Product } from "../../../types";
 import { useDispatch } from "react-redux";
@@ -16,25 +11,22 @@ import { addToCart } from "../cart-thunks";
 import { getToken } from "../../../Util/token";
 import { setNofication } from "../../../Util/notification";
 
-export default function ProductDescription() {
+interface Props {
+  data: Product[];
+  otherProducts: Product[];
+  product: Product;
+}
+
+export default function ProductDescription(props: Props) {
   const uid = getToken();
   const [qty, setQty] = useState<number>(1);
-  const params = useParams<Params>();
-  const productId = Number(params.productId);
   const dispatch = useDispatch<AppDispatch>();
-  const data = useLoaderData() as Product[];
-  const products = data.filter((item: Product) => item.id === productId);
-  if (products.length === 0) {
-    throw new Error("Invalid Id of product");
-  }
-  const product = products[0];
 
-  const otherProducts: Product[] = data.filter((item) => item.id !== productId);
   const navigate = useNavigate();
 
   const addtoCartHandler = () => {
     if (uid) {
-      dispatch(addToCart(uid, { ...product, amount: qty }));
+      dispatch(addToCart(uid, { ...props.product, amount: qty }));
     } else {
       setNofication("error", "Please Login to add items to Cart!");
     }
@@ -60,17 +52,18 @@ export default function ProductDescription() {
       <div className={classes.Itemcontainer}>
         <div className={classes.imageContainer}>
           <img
-            src={product.image}
+            src={props.product.image}
             alt="product Image"
             className={classes.image}
           />
         </div>
         <div className={classes.details}>
-          <h1>{product.title}</h1>
-          <p className={classes.description}>{product.description}</p>
-          <h3>${product.price}/-</h3>
+          <h1>{props.product.title}</h1>
+          <p className={classes.description}>{props.product.description}</p>
+          <h3>${props.product.price}/-</h3>
           <p>
-            {product.rating.rate} stars ({product.rating.count} ratings)
+            {props.product.rating.rate} stars ({props.product.rating.count}{" "}
+            ratings)
           </p>
           <div>
             <QtyForm
@@ -88,10 +81,10 @@ export default function ProductDescription() {
       <div className={classes.moreItems}>
         <h2>
           Check out other products in{" "}
-          <span className={classes.capitalize}>{product.category}</span>
+          <span className={classes.capitalize}>{props.product.category}</span>
         </h2>
         <div className={classes.moreContainer}>
-          {otherProducts.map((item, index) => {
+          {props.otherProducts.map((item, index) => {
             return (
               <ProductItem
                 key={index}

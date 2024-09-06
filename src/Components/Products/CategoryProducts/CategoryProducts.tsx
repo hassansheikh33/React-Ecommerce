@@ -1,15 +1,16 @@
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Product } from "../../../types";
 import ProductItem from "../ProductItem/ProductItem";
 import classes from "./CategoryProducts.module.css";
 import { ChangeEvent, useState } from "react";
 import ProductContainer from "../ProductContainer/ProductContainer";
 
-export default function Products() {
-  const { data, category } = useLoaderData() as {
-    data: Product[];
-    category: string;
-  };
+interface Props {
+  data: Product[];
+  category?: string;
+}
+
+export default function CategoryProducts(props: Props) {
   const [filter, setFilter] = useState<string>("none");
 
   const filterChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -18,26 +19,26 @@ export default function Products() {
   let sorted: Product[] = [];
   switch (filter) {
     case "PLTH":
-      sorted = data.sort((a, b) => a.price - b.price);
+      sorted = props.data.sort((a, b) => a.price - b.price);
       break;
     case "PHTL":
-      sorted = data.sort((a, b) => b.price - a.price);
+      sorted = props.data.sort((a, b) => b.price - a.price);
       break;
     case `RLTH`:
-      sorted = data.sort((a, b) => a.rating.rate - b.rating.rate);
+      sorted = props.data.sort((a, b) => a.rating.rate - b.rating.rate);
       break;
     case `RHTL`:
-      sorted = data.sort((a, b) => b.rating.rate - a.rating.rate);
+      sorted = props.data.sort((a, b) => b.rating.rate - a.rating.rate);
       break;
     default:
-      sorted = data.sort(() => 0.5 - Math.random());
+      sorted = props.data.sort(() => 0.5 - Math.random());
   }
-  const [products] = useState<Product[]>(sorted);
+  const [sortedProducts] = useState<Product[]>(sorted);
 
   const navigate = useNavigate();
   return (
     <div className={classes.container}>
-      <h1 className={classes.heading}>{category}</h1>
+      <h1 className={classes.heading}>{props.category}</h1>
       <div className={classes.filter}>
         <label htmlFor="filter" className={classes.label}>
           Sort by
@@ -57,9 +58,11 @@ export default function Products() {
         </select>
       </div>
       <ProductContainer>
-        {products.map((item) => (
+        {sortedProducts.map((item) => (
           <ProductItem
-            onClick={() => navigate(`/shop/category/${category}/${item.id}`)}
+            onClick={() =>
+              navigate(`/shop/category/${props.category}/${item.id}`)
+            }
             key={item.id}
             product={item}
           />
