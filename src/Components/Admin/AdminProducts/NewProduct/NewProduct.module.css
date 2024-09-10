@@ -1,0 +1,15 @@
+.formContainer {
+  margin-top: 6rem;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.heading {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.red {
+  color: red;
+}

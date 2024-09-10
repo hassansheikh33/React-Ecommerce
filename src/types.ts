@@ -12,25 +12,13 @@ export interface AdminProduct {
   stock: number;
 }
 
-export interface Product {
-  id: number;
-  title: string;
-  price: number;
-  category: string;
-  description: string;
-  image: string;
-  rating: {
-    rate: number;
-    count: number;
-  };
-}
+export type Product = Omit<AdminProduct, "stock">;
 
-export interface CartItem {
-  id: number;
-  title: string;
-  price: number;
+export type CartItem = Omit<Product, "description"> & {
   amount: number;
-}
+};
+
+export type OrderItem = Pick<CartItem, "id" | "title" | "price" | "amount">;
 
 export interface NotificationType {
   title: string;
@@ -52,6 +40,7 @@ export interface UserData {
     totalAmount: number;
     totalNumItems: number;
   };
+  dateCreated: string;
 }
 
 export interface OrderFormError {
@@ -62,10 +51,18 @@ export interface OrderFormError {
   method: string | null;
 }
 
-export interface Order extends UserData {
+export interface Order {
+  uid: string;
+  name: string;
+  email: string;
   address: string;
   number: number;
   payment_method: string;
+  order: {
+    items: OrderItem[];
+    totalAmount: number;
+    totalNumItems: number;
+  };
 }
 
 export interface AuthFormError {
@@ -88,4 +85,23 @@ export interface AdminLoginError {
 export interface AdminCredentials {
   email: string;
   password: string;
+}
+
+export interface AdminData {
+  admins: AdminCredentials[];
+  users: UserData[];
+  products: AdminProduct[];
+  orders: Order[];
+}
+
+export interface ProductFormError {
+  id: number | null;
+  title: string | null;
+  price: string | null;
+  category: string | null;
+  description: string | null;
+  image: string | null;
+  rate: string | null;
+  count: string | null;
+  stock: string | null;
 }

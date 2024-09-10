@@ -1,0 +1,52 @@
+.label {
+  width: 100%;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.input {
+  display: block;
+  width: 96%;
+  padding: 0.5rem 1rem;
+  font-size: 1.1rem;
+  border: 1px solid grey;
+  border-radius: 5px;
+}
+
+.input:focus-visible {
+  outline: none;
+}
+
+.fieldset {
+  margin: 0;
+  width: 100%;
+  margin-bottom: 2rem;
+  border: none;
+  padding: 0;
+}
+
+.submitBtn {
+  color: white;
+  font: inherit;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  padding: 10px 20px;
+  background-color: rgb(52, 112, 243);
+  cursor: pointer;
+}
+
+.textarea {
+  display: block;
+  width: 100%;
+  font: inherit;
+  font-size: 1.2rem;
+  padding: 1rem;
+}
+
+.red {
+  color: red;
+  margin-top: 0;
+}

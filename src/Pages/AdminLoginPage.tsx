@@ -1,4 +1,4 @@
-import { LoaderFunction, Outlet, redirect } from "react-router-dom";
+import { LoaderFunction, redirect } from "react-router-dom";
 import Login from "../Components/Admin/Login/Login";
 import store from "../store/redux-store";
 import { uiActions } from "../store/ui-slice";
@@ -18,13 +18,4 @@ export const adminLoginLoader: LoaderFunction = async () => {
   store.dispatch(uiActions.clearToken());
   store.dispatch(uiActions.setMode("user"));
   return null;
-};
-
-export const adminLoader = () => {
-  const adminToken = getAdminToken();
-  if (adminToken && adminToken !== "user" && adminToken !== "token expired") {
-    return <Outlet />;
-  }
-  setNofication("error", "Unauthenticated");
-  return redirect("/adminLogin");
 };

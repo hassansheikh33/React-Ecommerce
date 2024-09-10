@@ -66,7 +66,7 @@ export default function RootLayout() {
   useEffect(() => {
     //restricts a user/admin who tries to fake login by storing items in localStorage manually
     const validate = async () => {
-      if (adminToken !== "user" && adminToken !== "token expired") {
+      if (!token && adminToken !== "user" && adminToken !== "token expired") {
         const response = await adminExists(adminToken);
         if (!response) {
           setNofication("error", "Unauthenticated Admin");
@@ -74,7 +74,7 @@ export default function RootLayout() {
         }
         return;
       }
-      if (token) {
+      if (token && (!adminToken || adminToken === "user")) {
         const response = await userExists(token);
         if (!response) {
           setNofication("error", "Unauthenticated User");

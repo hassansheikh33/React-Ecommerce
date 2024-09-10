@@ -49,7 +49,7 @@ export default function SingleCartItem({ item }: Props) {
         </p>
         <QtyForm
           uid={uid ? uid : null}
-          cartItem={{ ...item, amount: 1 }}
+          cartItem={item}
           className={classes.btnContainer}
         >
           <RedBtn className={classes.delBtn} onClick={deleteFromCartHandler}>

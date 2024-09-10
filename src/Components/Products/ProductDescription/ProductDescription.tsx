@@ -10,6 +10,7 @@ import ProductItem from "../ProductItem/ProductItem";
 import { addToCart } from "../cart-thunks";
 import { getToken } from "../../../Util/token";
 import { setNofication } from "../../../Util/notification";
+import { transformToCartItem } from "../../../Util/transformProduct";
 
 interface Props {
   data: Product[];
@@ -26,7 +27,8 @@ export default function ProductDescription(props: Props) {
 
   const addtoCartHandler = () => {
     if (uid) {
-      dispatch(addToCart(uid, { ...props.product, amount: qty }));
+      const item = transformToCartItem(props.product, qty);
+      dispatch(addToCart(uid, item));
     } else {
       setNofication("error", "Please Login to add items to Cart!");
     }

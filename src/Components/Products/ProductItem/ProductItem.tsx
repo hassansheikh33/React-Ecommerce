@@ -7,6 +7,7 @@ import Button from "../../UI/Button/Button";
 import { addToCart } from "../cart-thunks";
 import { getToken } from "../../../Util/token";
 import { setNofication } from "../../../Util/notification";
+import { transformToCartItem } from "../../../Util/transformProduct";
 
 interface Props {
   product: Product;
@@ -18,14 +19,8 @@ export default function ProductItem(props: Props) {
   const dispatch = useDispatch<AppDispatch>();
   const addtoCartHandler = () => {
     if (uid) {
-      dispatch(
-        addToCart(uid, {
-          id: props.product.id,
-          price: props.product.price,
-          title: props.product.title,
-          amount: 1,
-        })
-      );
+      const item = transformToCartItem(props.product, 1);
+      dispatch(addToCart(uid, item));
     } else {
       setNofication("error", "Please Login to add items to Cart!");
     }
