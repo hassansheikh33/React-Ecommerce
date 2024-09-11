@@ -1,5 +1,4 @@
 import {
-  addDoc,
   collection,
   deleteDoc,
   doc,
@@ -7,6 +6,7 @@ import {
   getDocs,
   onSnapshot,
   setDoc,
+  updateDoc,
 } from "firebase/firestore";
 import { AppDispatch } from "./redux-store";
 import { AdminCredentials, AdminProduct, Order, UserData } from "../types";
@@ -186,16 +186,54 @@ export const listenToOrdersChanges = () => {
 
 export const deleteProduct = (id: string) => {
   return async () => {
-    const productDocRef = doc(fs, "products", id);
-    await deleteDoc(productDocRef);
-    setNofication("error", "Product deleted Successfully");
+    try {
+      const productDocRef = doc(fs, "products", id);
+      await deleteDoc(productDocRef);
+      setNofication("error", "Product deleted Successfully");
+    } catch (err: any) {
+      setNofication("error", err.message);
+    }
   };
 };
 
 export const addNewAdmin = (adminCredentials: AdminCredentials) => {
   return async () => {
-    const adminCollectionRef = collection(fs, "admins");
-    await addDoc(adminCollectionRef, adminCredentials);
-    setNofication("success", "Added a new Admin Successfully");
+    try {
+      const newAdminDocRef = doc(fs, "admins", adminCredentials.email);
+      const existing = await getDoc(newAdminDocRef);
+      if (existing.exists()) {
+        throw new Error("Admin Already exists");
+      }
+      await setDoc(newAdminDocRef, adminCredentials);
+      setNofication("success", "Added a new Admin Successfully");
+    } catch (err: any) {
+      setNofication("error", err.message);
+    }
+  };
+};
+
+export const changeAdminPassword = (email: string, newPassword: string) => {
+  return async () => {
+    try {
+      const adminDocRef = doc(fs, "admins", email);
+      await updateDoc(adminDocRef, {
+        password: newPassword,
+      });
+      setNofication("success", "Password Updated Successfully");
+    } catch (err: any) {
+      setNofication("error", err.message);
+    }
+  };
+};
+
+export const removeAdmin = (email: string) => {
+  return async () => {
+    try {
+      const adminDocRef = doc(fs, "admins", email);
+      await deleteDoc(adminDocRef);
+      setNofication("success", "Admin Deleted Successfully");
+    } catch (err: any) {
+      setNofication("error", err.message);
+    }
   };
 };

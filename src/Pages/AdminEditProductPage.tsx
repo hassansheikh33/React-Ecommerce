@@ -4,10 +4,22 @@ import store from "../store/redux-store";
 import { setNofication } from "../Util/notification";
 import { AdminProduct } from "../types";
 import { getAdminData } from "../store/admin-thunks";
+import { Helmet } from "react-helmet";
 
 export default function AdminEditProductPage() {
   const product = useLoaderData() as AdminProduct;
-  return <EditProduct product={product} />;
+  return (
+    <>
+      <Helmet>
+        <title>Edit Product</title>
+        <meta
+          name="description"
+          content={`Edit ${product.title}. Admin only`}
+        />
+      </Helmet>
+      <EditProduct product={product} />;
+    </>
+  );
 }
 
 export const editProductLoader: LoaderFunction = async ({ params }) => {

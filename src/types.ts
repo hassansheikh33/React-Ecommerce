@@ -105,3 +105,8 @@ export interface ProductFormError {
   count: string | null;
   stock: string | null;
 }
+
+export interface NewAdminError {
+  email: string | null;
+  password: string | null;
+}

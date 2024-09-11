@@ -78,12 +78,28 @@ export default function Navbar(props: Props) {
               Contact Us
             </NavLink>
             {!token && (
-              <Link
-                to="/auth?mode=login"
-                className={`${classes.link} ${classes.auth}`}
-              >
-                <img className={classes.icon} src={person} alt="person icon" />
-              </Link>
+              <>
+                <Link
+                  to="/auth?mode=login"
+                  className={`${classes.link} ${classes.auth}`}
+                >
+                  <img
+                    className={classes.icon}
+                    src={person}
+                    alt="person icon"
+                  />
+                </Link>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive
+                      ? `${classes.active} ${classes.link} ${classes.navItem}`
+                      : `${classes.link} ${classes.navItem}`
+                  }
+                  to="/adminLogin"
+                >
+                  Admin
+                </NavLink>
+              </>
             )}
             {token && (
               <Link className={`${classes.link} ${classes.cart}`} to="/cart">
