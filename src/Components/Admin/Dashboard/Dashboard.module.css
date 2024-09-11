@@ -1,0 +1,116 @@
+.container {
+  padding: 1rem;
+}
+
+.salesDiv {
+  margin-top: 6rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.chartDiv {
+  width: 60%;
+}
+
+.textDiv {
+  width: 30%;
+}
+
+.heading {
+  width: 90%;
+  margin-top: 3rem;
+}
+
+.red {
+  color: red;
+}
+
+.blue {
+  color: rgb(52, 112, 243);
+}
+
+.textCenter {
+  text-align: center;
+}
+
+.dataCount {
+  margin-top: 6rem;
+  margin-bottom: 6rem;
+}
+
+.dataHeading {
+  font-size: 2rem;
+  margin-bottom: 6rem;
+}
+
+.cardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 2rem;
+  justify-content: center;
+}
+
+.card {
+  padding: 1rem;
+  width: 15%;
+}
+
+.cardTitle {
+  font-size: 1.5rem;
+}
+
+.count {
+  color: grey;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.salesNavigation {
+  margin-top: 5rem;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 2rem;
+  row-gap: 4rem;
+  justify-content: center;
+}
+
+.today {
+  font-size: 1rem;
+  color: grey;
+  font-weight: lighter;
+}
+
+.salesCard {
+  padding: 3rem;
+  width: 40%;
+}
+
+.sales {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.profit {
+  color: rgb(19, 184, 19);
+}
+.loss {
+  color: red;
+}
+
+.profitCard:hover {
+  background-color: rgb(19, 184, 19);
+}
+
+.profitCard:hover * {
+  color: white;
+}
+
+.lossCard:hover {
+  background-color: red;
+}
+
+.lossCard:hover * {
+  color: white;
+}

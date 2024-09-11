@@ -63,6 +63,9 @@ export default function Footer() {
             <Link className={classes.link} to="/contactUs">
               Contact Us
             </Link>
+            <Link className={classes.link} to="/admin/dashboard">
+              Admin
+            </Link>
           </div>
         </div>
         <div className={classes.column}>

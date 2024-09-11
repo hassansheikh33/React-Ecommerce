@@ -1,0 +1,88 @@
+.adminCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+.blue {
+  color: rgb(52, 112, 243);
+}
+
+.adminHeading {
+  font-weight: 500;
+}
+
+.changeBtn {
+  margin-right: 1rem;
+  background-color: rgb(52, 112, 243);
+}
+
+.deleteBtn {
+  background-color: red;
+}
+
+.btnsDiv {
+  display: flex;
+  justify-content: space-around;
+}
+
+.newAdminBtn {
+  background: rgb(19, 184, 19);
+  margin-bottom: 1rem;
+}
+
+.closeBtn {
+  background-color: grey;
+  margin-right: 1rem;
+}
+
+.saveAdminBtn {
+  background-color: rgb(52, 112, 243);
+}
+
+.label {
+  width: 100%;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.input {
+  display: block;
+  width: 96%;
+  padding: 0.5rem 1rem;
+  font-size: 1.1rem;
+  border: 1px solid grey;
+  border-radius: 5px;
+}
+
+.input:focus-visible {
+  outline: none;
+}
+
+.fieldset {
+  margin: 0;
+  width: 100%;
+  margin-bottom: 2rem;
+  border: none;
+  padding: 0;
+}
+
+.error {
+  color: red;
+  margin: 0;
+}
+
+.container {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.modalHeading {
+  margin-top: 0;
+  font-weight: 500;
+  font-size: 1.7rem;
+}

@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 6rem;
+}
+
+.formContainer {
+  width: 50%;
+}
+
+.imageContainer {
+  width: 25%;
+}
+
+.heading {
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.blue {
+  color: rgb(52, 112, 243);
+}
+
+.image {
+  max-width: 100%;
+  height: auto;
+}

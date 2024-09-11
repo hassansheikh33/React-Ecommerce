@@ -1,8 +1,6 @@
 .container {
   width: 50%;
-  margin: auto;
-  margin-bottom: 4.5rem;
-  margin-top: 3rem;
+  margin: 5rem auto 5rem auto;
 }
 
 .red {
@@ -15,19 +13,6 @@
   font-weight: 500;
   font-size: 2.8rem;
   margin-top: 0;
-  margin-bottom: 0.5rem;
-}
-
-.mesText {
-  font-size: 1.2rem;
-  font-weight: 500;
-}
-
-.formContainer {
-  padding: 2rem !important;
-}
-
-.formContainer form {
   margin-bottom: 0.5rem;
 }
 
@@ -65,12 +50,13 @@
   width: 18%;
 }
 
-.changeModeBtn {
-  color: black;
-}
-
-.changeModeBtn:visited {
-  color: black;
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .spinner {
@@ -82,28 +68,12 @@
   animation: loading 1s linear infinite;
 }
 
-@keyframes loading {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-/* media queries */
 @media (max-width: 575.98px) {
-  .formContainer {
-    padding: 1rem !important;
-  }
   .container {
     width: 95%;
   }
   .heading {
     font-size: 2.5rem;
-  }
-  .mesText {
-    font-size: 1.1rem;
   }
   .fieldset {
     margin-bottom: 1rem;

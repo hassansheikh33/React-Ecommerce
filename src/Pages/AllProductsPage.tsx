@@ -1,10 +1,12 @@
-import { LoaderFunction, useLoaderData } from "react-router-dom";
+import { useRouteLoaderData } from "react-router-dom";
 import AllProducts from "../Components/Products/AllProducts/AllProducts";
 import { Product } from "../types";
 import { Helmet } from "react-helmet";
+import { collection, getDocs } from "firebase/firestore";
+import { fs } from "../Config/firebaseConfig";
 
 export default function AllProductsPage() {
-  const data = useLoaderData() as Product[];
+  const data = useRouteLoaderData("root") as Product[];
   return (
     <>
       <Helmet>
@@ -19,14 +21,16 @@ export default function AllProductsPage() {
   );
 }
 
-export const AllProductsLoader: LoaderFunction = async () => {
+export const AllProductsLoader = async () => {
   try {
-    const response = await fetch(`https://fakestoreapi.com/products`);
-    if (!response.ok) {
-      throw new Error(`Error ${response.status}: ${response.statusText}`);
+    const productsCollection = collection(fs, "products");
+    const response = await getDocs(productsCollection);
+    if (response.docs.length > 0) {
+      const data = response.docs.map((doc) => ({ ...doc.data() }));
+      return data;
+    } else {
+      throw new Error("Products not found");
     }
-    const data = await response.json();
-    return data;
   } catch (err) {
     console.log(err);
   }

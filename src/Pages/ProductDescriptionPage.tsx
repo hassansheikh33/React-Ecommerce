@@ -1,19 +1,31 @@
 import {
-  LoaderFunction,
+  // LoaderFunction,
   Params,
-  useLoaderData,
   useParams,
+  useRouteLoaderData,
 } from "react-router-dom";
 import ProductDescription from "../Components/Products/ProductDescription/ProductDescription";
 import { Helmet } from "react-helmet";
 import { Product } from "../types";
+// import { doc } from "firebase/firestore";
+// import { fs } from "../Config/firebaseConfig";
+// import { CategoryProductsLoader } from "./CategoryProductsPage";
+// import { AllProductsLoader } from "./AllProductsPage";
 
 export default function ProductDescriptionPage() {
   const params = useParams<Params>();
   const productId = Number(params.productId);
-  const data = useLoaderData() as Product[];
-  const products = data.filter((item: Product) => item.id === productId);
-  const product = products[0];
+  const category = params.categoryName;
+  const data = useRouteLoaderData("root") as Product[];
+  if (productId > data.length) {
+    throw new Error("invalid product ID");
+  }
+  const requiredIndex = data.findIndex((item) => item.id === productId);
+  const product = data[requiredIndex];
+  const otherProducts = data
+    .filter((item: Product) => item.category === category)
+    .filter((item) => item.id !== productId);
+
   return (
     <>
       <Helmet>
@@ -23,37 +35,32 @@ export default function ProductDescriptionPage() {
           content={`${product.title} : ${product.description} Buy Yours Now!`}
         />
       </Helmet>
-      <ProductDescription />;
+      <ProductDescription
+        data={data}
+        product={product}
+        otherProducts={otherProducts}
+      />
+      ;
     </>
   );
 }
 
-export const singleProductLoader: LoaderFunction = async ({ params }) => {
-  const category = params.categoryName;
-  let endpoint = "";
-  if (
-    category === "jewelery" ||
-    category === "men's clothing" ||
-    category === "women's clothing" ||
-    category === "electronics"
-  ) {
-    endpoint = `category/${category}`;
-  } else {
-    throw new Error("unrecognized category");
-  }
-  try {
-    const response = await fetch(
-      `https://fakestoreapi.com/products/${endpoint}`
-    );
-    if (!response.ok) {
-      throw new Error(`Error ${response.status}: ${response.statusText}`);
-    }
-    const data = await response.json();
-    if (data.length > 0) {
-      return data;
-    }
-    throw new Error("No Data Found");
-  } catch (err) {
-    console.log(err);
-  }
-};
+// export const singleProductLoader: LoaderFunction = async ({ params }) => {
+//   const category = params.categoryName;
+//   if (
+//     !(
+//       category === "electronics" ||
+//       category === "men's clothing" ||
+//       category === "women's clothing" ||
+//       category === "jewelery"
+//     )
+//   ) {
+//     throw new Error("invalid Category");
+//   }
+//   try {
+//     const data = (await AllProductsLoader()) as Product[];
+
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };

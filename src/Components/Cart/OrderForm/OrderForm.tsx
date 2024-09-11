@@ -10,6 +10,7 @@ import { order, removeAll } from "../../Products/cart-thunks";
 import Button from "../../UI/Button/Button";
 import Card from "../../UI/Card/Card";
 import { uiActions } from "../../../store/ui-slice";
+import { transformToOrderItem } from "../../../Util/transformProduct";
 
 export default function OrderForm() {
   const orderFormRef = useRef<null | HTMLFormElement>(null);
@@ -121,13 +122,20 @@ export default function OrderForm() {
         setNofication("error", "Pleas enter correct values");
         return;
       }
+      const orderItems = cart.cartItems.map((item) =>
+        transformToOrderItem(item)
+      );
       dispatch(
         order({
           name,
           email,
           address,
           number: Number(numberRef.current.value),
-          cart,
+          order: {
+            items: orderItems,
+            totalAmount: cart.totalAmount,
+            totalNumItems: cart.totalNumItems,
+          },
           payment_method: method,
           uid,
         })

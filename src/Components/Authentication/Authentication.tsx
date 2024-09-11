@@ -13,7 +13,7 @@ import {
 import { auth, fs } from "../../Config/firebaseConfig";
 import { doc, setDoc } from "firebase/firestore";
 import { setNofication } from "../../Util/notification";
-import { AuthFormError } from "../../types";
+import { AuthFormError, UserData } from "../../types";
 
 export default function Authentication() {
   const loading = useSelector((state: RootState) => state.ui.loading);
@@ -175,7 +175,8 @@ export default function Authentication() {
             password.trim()
           );
           const uid = signUpInfo.user.uid;
-          const user = {
+          const dateCreated = new Date().toLocaleString();
+          const user: UserData = {
             email: email.trim(),
             name: name.trim(),
             uid,
@@ -184,6 +185,7 @@ export default function Authentication() {
               totalNumItems: 0,
               totalAmount: 0,
             },
+            dateCreated,
           };
           const userDocReference = doc(fs, "users", uid);
           await setDoc(userDocReference, user);
