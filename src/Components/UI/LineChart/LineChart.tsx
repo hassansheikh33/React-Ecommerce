@@ -49,9 +49,6 @@ const LineChart = () => {
   const options = {
     responsive: true,
     plugins: {
-      legend: {
-        position: "top",
-      },
       title: {
         display: true,
         text: "Weekly Sales Over 1 Year",
