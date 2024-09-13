@@ -1,6 +1,8 @@
-This is a react ts e-commerce project.
-it uses firebase to sore user data.
-stores and updates the cart on firebase whenever the cart is changed.
-cart is different (specific) for every user.
-i used RTK for state management.
-It brings product data from the fakeproduct api.
+This is an E-Commerce project.
+it uses firebase firestore as a backend to store products, users, admins and orders data.
+Each user's cart is stored in firebase and is updated once changed.
+i used Redux Toolkit for state management.
+It has an admin dashboard.
+Admins can view all the users and admins.
+Admins can view / edit / add / delete all products
+Admins can view all the orders
